@@ -1,0 +1,8 @@
+name: Devlopement
+author: Dams333
+version: 3.0.0
+main: ch.dams333.devlopement.Devlopement
+commands:
+  devmod:
+    decription: Entrer ou quitter le mode de developpement
+    permission: devlopement.commands.admin.devmod
