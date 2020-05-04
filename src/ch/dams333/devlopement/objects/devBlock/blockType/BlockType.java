@@ -1,13 +1,15 @@
 package ch.dams333.devlopement.objects.devBlock.blockType;
 
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 
 import java.util.Arrays;
 import java.util.List;
 
 public enum BlockType {
-    ONE_SECOND("one_second", "Attendre 1 seconde", Arrays.asList("Quand la ligne passe sur ce bloc", "elle attend 1 seconde avant d'avancer"), Material.QUARTZ_SLAB, (byte)0);
+    DEV_START("dev_start", ChatColor.GOLD + "Démarrer une ligne de test", Arrays.asList(ChatColor.GRAY +"Démarre une ligne en faisant clique droit"), Material.LAPIS_BLOCK, (byte)0),
+    ONE_SECOND("one_second", ChatColor.GOLD + "Attendre 1 seconde", Arrays.asList(ChatColor.GRAY + "Quand la ligne passe sur ce bloc", ChatColor.GRAY + "elle attend 1 seconde avant d'avancer"), Material.QUARTZ_SLAB, (byte)0);
 
 
     private String text;

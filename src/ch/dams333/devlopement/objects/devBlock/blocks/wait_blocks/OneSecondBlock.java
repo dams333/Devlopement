@@ -1,4 +1,4 @@
-package ch.dams333.devlopement.objects.devBlock.blocks;
+package ch.dams333.devlopement.objects.devBlock.blocks.wait_blocks;
 
 import ch.dams333.devlopement.Devlopement;
 import ch.dams333.devlopement.objects.devBlock.DevBlock;
