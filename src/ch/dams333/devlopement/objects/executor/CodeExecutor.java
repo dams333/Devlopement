@@ -4,17 +4,20 @@ import ch.dams333.devlopement.Devlopement;
 import ch.dams333.devlopement.objects.devBlock.DevBlock;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 
 public class CodeExecutor {
 
     private Devlopement main;
     private Location loc;
     private int direction;
+    private Player linePlayer;
 
-    public CodeExecutor(Devlopement main, Location loc) {
+    public CodeExecutor(Devlopement main, Location loc, Player linePlayer) {
         this.main = main;
         this.loc = loc;
         direction = 0;
+        this.linePlayer = linePlayer;
 
 
         loc.add(0, 1, 0);

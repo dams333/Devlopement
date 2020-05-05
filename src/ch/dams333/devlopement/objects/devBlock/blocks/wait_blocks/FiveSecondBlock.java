@@ -13,26 +13,26 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import java.io.File;
 import java.io.IOException;
 
-public class OneSecondBlock extends DevBlock{
+public class FiveSecondBlock extends DevBlock{
 
-    public OneSecondBlock(Devlopement main, Location loc) {
+    public FiveSecondBlock(Devlopement main, Location loc) {
         super(main, loc);
-        super.setType(BlockType.ONE_SECOND);
+        super.setType(BlockType.FIVE_SECOND);
     }
 
-    public OneSecondBlock(File file, Devlopement main) {
+    public FiveSecondBlock(File file, Devlopement main) {
         super(file, main);
-        super.setType(BlockType.ONE_SECOND);
+        super.setType(BlockType.FIVE_SECOND);
     }
 
     @Override
     public BlockType getBlockType() {
-        return BlockType.ONE_SECOND;
+        return BlockType.FIVE_SECOND;
     }
 
     @Override
     public void serialize() {
-        File blockFile = new File(super.getMain().getDataFolder(), "blocks/wait/one_second/" + super.getUuid().toString() + ".yml");
+        File blockFile = new File(super.getMain().getDataFolder(), "blocks/wait/five_second/" + super.getUuid().toString() + ".yml");
         YamlConfiguration blockConfig = YamlConfiguration.loadConfiguration(blockFile);
         for (String key : blockConfig.getKeys(false)) {
             blockConfig.set(key, null);
@@ -54,18 +54,18 @@ public class OneSecondBlock extends DevBlock{
     }
 
     @Override
+    public void inventoryOn(InventoryClickEvent e) {
+
+    }
+
+    @Override
     public void execute(CodeExecutor codeExecutor) {
         Bukkit.getScheduler().scheduleSyncDelayedTask(super.getMain(), new Runnable() {
             @Override
             public void run() {
                 codeExecutor.moveHead();
             }
-        }, 20L);
-    }
-
-    @Override
-    public void inventoryOn(InventoryClickEvent e) {
-
+        }, 100L);
     }
 
 

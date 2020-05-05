@@ -13,26 +13,26 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import java.io.File;
 import java.io.IOException;
 
-public class OneSecondBlock extends DevBlock{
+public class TenSecondBlock extends DevBlock{
 
-    public OneSecondBlock(Devlopement main, Location loc) {
+    public TenSecondBlock(Devlopement main, Location loc) {
         super(main, loc);
-        super.setType(BlockType.ONE_SECOND);
+        super.setType(BlockType.TEN_SECOND);
     }
 
-    public OneSecondBlock(File file, Devlopement main) {
+    public TenSecondBlock(File file, Devlopement main) {
         super(file, main);
-        super.setType(BlockType.ONE_SECOND);
+        super.setType(BlockType.TEN_SECOND);
     }
 
     @Override
     public BlockType getBlockType() {
-        return BlockType.ONE_SECOND;
+        return BlockType.TEN_SECOND;
     }
 
     @Override
     public void serialize() {
-        File blockFile = new File(super.getMain().getDataFolder(), "blocks/wait/one_second/" + super.getUuid().toString() + ".yml");
+        File blockFile = new File(super.getMain().getDataFolder(), "blocks/wait/ten_second/" + super.getUuid().toString() + ".yml");
         YamlConfiguration blockConfig = YamlConfiguration.loadConfiguration(blockFile);
         for (String key : blockConfig.getKeys(false)) {
             blockConfig.set(key, null);
@@ -60,7 +60,7 @@ public class OneSecondBlock extends DevBlock{
             public void run() {
                 codeExecutor.moveHead();
             }
-        }, 20L);
+        }, 200L);
     }
 
     @Override

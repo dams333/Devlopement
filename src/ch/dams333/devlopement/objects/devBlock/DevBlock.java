@@ -14,6 +14,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
@@ -45,6 +46,7 @@ public abstract class DevBlock implements Listener {
     public abstract BlockType getBlockType();
     public abstract void serialize();
     public abstract void clickOn(Player p);
+    public abstract void inventoryOn(InventoryClickEvent e);
 
     public UUID getUuid() {
         return uuid;
@@ -91,6 +93,18 @@ public abstract class DevBlock implements Listener {
                     if (compareToSelfLoc(e.getClickedBlock().getLocation())) {
                         clickOn(e.getPlayer());
                     }
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void inv(InventoryClickEvent e){
+        Player p = (Player) e.getWhoClicked();
+        if(main.isInModif(p)){
+            if(main.getInModif(p).getUuid().equals(this.uuid)){
+                if(e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR) {
+                    inventoryOn(e);
                 }
             }
         }

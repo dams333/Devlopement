@@ -8,6 +8,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
 
 import java.io.File;
 import java.io.IOException;
@@ -55,11 +56,16 @@ public class DevStartBlock extends DevBlock{
     @Override
     public void clickOn(Player p) {
         p.sendMessage(ChatColor.DARK_BLUE + "La ligne démarre");
-        new CodeExecutor(getMain(), getLoc().clone());
+        new CodeExecutor(getMain(), getLoc().clone(), p);
     }
 
     @Override
     public void execute(CodeExecutor codeExecutor) {
+
+    }
+
+    @Override
+    public void inventoryOn(InventoryClickEvent e) {
 
     }
 

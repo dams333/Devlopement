@@ -5,6 +5,7 @@ import ch.dams333.devlopement.commands.admin.DevItemsCommand;
 import ch.dams333.devlopement.commands.admin.DevModCommand;
 import ch.dams333.devlopement.events.actions.ClickInInventory;
 import ch.dams333.devlopement.events.block.PlaceDevBlock;
+import ch.dams333.devlopement.events.startLine.StartLineEvents;
 import ch.dams333.devlopement.objects.devBlock.DevBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.BlocksDeserializer;
 import org.bukkit.entity.Player;
@@ -15,13 +16,17 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Devlopement extends JavaPlugin {
 
     private List<String> devmod;
 
     private List<DevBlock> devBlocks;
+
+    private Map<Player, DevBlock> inModif;
 
     public static DamsLIB API;
 
@@ -36,6 +41,7 @@ public class Devlopement extends JavaPlugin {
 
         devmod = new ArrayList<>();
         devBlocks = new ArrayList<>();
+        inModif = new HashMap<>();
 
 
         getCommand("devmod").setExecutor(new DevModCommand(this));
@@ -43,6 +49,7 @@ public class Devlopement extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new PlaceDevBlock(this), this);
         getServer().getPluginManager().registerEvents(new ClickInInventory(this), this);
+        getServer().getPluginManager().registerEvents(new StartLineEvents(this), this);
 
 
         BlocksDeserializer.deserialize(this);
@@ -102,6 +109,31 @@ public class Devlopement extends JavaPlugin {
 
     public List<DevBlock> getDevBlocks() {
         return devBlocks;
+    }
+
+    public void enterModif(Player p, DevBlock devBlock){
+        this.inModif.put(p, devBlock);
+    }
+
+    public DevBlock getInModif(Player p){
+        if(this.inModif.keySet().contains(p)){
+            return this.inModif.get(p);
+        }
+        return null;
+    }
+
+    public boolean isInModif(Player p){
+        return this.inModif.keySet().contains(p);
+    }
+
+    public void updateModif(DevBlock devBlock) {
+        for(DevBlock selfDevBlock : this.devBlocks){
+            if(selfDevBlock.getUuid().equals(devBlock.getUuid())){
+                this.devBlocks.remove(selfDevBlock);
+                break;
+            }
+        }
+        this.devBlocks.add(devBlock);
     }
 }
 

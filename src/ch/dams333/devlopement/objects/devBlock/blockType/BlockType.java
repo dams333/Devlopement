@@ -8,8 +8,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum BlockType {
+    EVENT_START("event_start", ChatColor.GOLD + "Démarrer une ligne après un évennement", Arrays.asList(ChatColor.GRAY +"Démarre une ligne lorsq'un évennement se produit", ChatColor.GRAY + "(Clique droit pour définir lequel)"), Material.DIAMOND_BLOCK, (byte)0),
     DEV_START("dev_start", ChatColor.GOLD + "Démarrer une ligne de test", Arrays.asList(ChatColor.GRAY +"Démarre une ligne en faisant clique droit"), Material.LAPIS_BLOCK, (byte)0),
-    ONE_SECOND("one_second", ChatColor.GOLD + "Attendre 1 seconde", Arrays.asList(ChatColor.GRAY + "Quand la ligne passe sur ce bloc", ChatColor.GRAY + "elle attend 1 seconde avant d'avancer"), Material.QUARTZ_SLAB, (byte)0);
+    ONE_SECOND("one_second", ChatColor.GOLD + "Attendre 1 seconde", Arrays.asList(ChatColor.GRAY + "Quand la ligne passe sur ce bloc", ChatColor.GRAY + "elle attend 1 seconde avant d'avancer"), Material.QUARTZ_SLAB, (byte)0),
+    FIVE_SECOND("five_second", ChatColor.GOLD + "Attendre 5 seconde", Arrays.asList(ChatColor.GRAY + "Quand la ligne passe sur ce bloc", ChatColor.GRAY + "elle attend 5 seconde avant d'avancer"), Material.BRICK_SLAB, (byte)0),
+    TEN_SECOND("ten_second", ChatColor.GOLD + "Attendre 10 seconde", Arrays.asList(ChatColor.GRAY + "Quand la ligne passe sur ce bloc", ChatColor.GRAY + "elle attend 10 seconde avant d'avancer"), Material.STONE_BRICK_SLAB, (byte)0),
+    THIRTY_SECOND("thirty_second", ChatColor.GOLD + "Attendre 30 seconde", Arrays.asList(ChatColor.GRAY + "Quand la ligne passe sur ce bloc", ChatColor.GRAY + "elle attend 30 seconde avant d'avancer"), Material.PURPUR_SLAB, (byte)0);
 
 
     private String text;
