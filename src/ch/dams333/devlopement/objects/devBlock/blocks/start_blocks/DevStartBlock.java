@@ -3,8 +3,11 @@ package ch.dams333.devlopement.objects.devBlock.blocks.start_blocks;
 import ch.dams333.devlopement.Devlopement;
 import ch.dams333.devlopement.objects.devBlock.DevBlock;
 import ch.dams333.devlopement.objects.devBlock.blockType.BlockType;
+import ch.dams333.devlopement.objects.executor.CodeExecutor;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
@@ -47,6 +50,17 @@ public class DevStartBlock extends DevBlock{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void clickOn(Player p) {
+        p.sendMessage(ChatColor.DARK_BLUE + "La ligne démarre");
+        new CodeExecutor(getMain(), getLoc().clone());
+    }
+
+    @Override
+    public void execute(CodeExecutor codeExecutor) {
+
     }
 
 }

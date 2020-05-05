@@ -2,15 +2,20 @@ package ch.dams333.devlopement.objects.devBlock;
 
 import ch.dams333.devlopement.Devlopement;
 import ch.dams333.devlopement.objects.devBlock.blockType.BlockType;
+import ch.dams333.devlopement.objects.executor.CodeExecutor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 
 import java.io.File;
 import java.util.List;
@@ -39,6 +44,7 @@ public abstract class DevBlock implements Listener {
 
     public abstract BlockType getBlockType();
     public abstract void serialize();
+    public abstract void clickOn(Player p);
 
     public UUID getUuid() {
         return uuid;
@@ -77,6 +83,19 @@ public abstract class DevBlock implements Listener {
         }
     }
 
+    @EventHandler
+    public void click(PlayerInteractEvent e){
+        if(e.getHand() == EquipmentSlot.HAND && e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            if (e.getClickedBlock() != null) {
+                if (main.isInDevMod(e.getPlayer())) {
+                    if (compareToSelfLoc(e.getClickedBlock().getLocation())) {
+                        clickOn(e.getPlayer());
+                    }
+                }
+            }
+        }
+    }
+
 
 
     protected YamlConfiguration saveLocation(YamlConfiguration configuration, Location loc) {
@@ -102,4 +121,9 @@ public abstract class DevBlock implements Listener {
     }
 
 
+    public abstract void execute(CodeExecutor codeExecutor);
+
+    public boolean compareToSelfLoc(Location loc){
+        return (this.loc.getWorld() == loc.getWorld() && this.loc.getX() == loc.getX() && this.loc.getY() == loc.getY() && this.loc.getZ() == loc.getZ());
+    }
 }

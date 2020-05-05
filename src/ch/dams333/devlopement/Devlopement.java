@@ -28,6 +28,10 @@ public class Devlopement extends JavaPlugin {
     @Override
     public void onEnable() {
 
+        if(!new File(String.valueOf(getDataFolder())).exists()) {
+            getDataFolder().mkdir();
+        }
+
         API = (DamsLIB) getServer().getPluginManager().getPlugin("DamsLIB");
 
         devmod = new ArrayList<>();
@@ -96,5 +100,8 @@ public class Devlopement extends JavaPlugin {
         }
     }
 
+    public List<DevBlock> getDevBlocks() {
+        return devBlocks;
+    }
 }
 
