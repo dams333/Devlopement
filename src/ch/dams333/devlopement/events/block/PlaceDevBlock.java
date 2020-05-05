@@ -19,7 +19,6 @@ public class PlaceDevBlock implements Listener {
         if(main.isInDevMod(e.getPlayer())){
             for(BlockType blockType : BlockType.values()){
                 if(blockType.getMaterial() == e.getBlock().getType()){
-
                     if(blockType.toString().equalsIgnoreCase(BlockType.ONE_SECOND.toString())){
                         main.addDevBlock(new OneSecondBlock(main, e.getBlock().getLocation()));
                     }
