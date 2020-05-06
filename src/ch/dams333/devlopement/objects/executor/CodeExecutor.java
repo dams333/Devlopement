@@ -13,11 +13,16 @@ public class CodeExecutor {
     private int direction;
     private Player linePlayer;
 
+    public Player getLinePlayer() {
+        return linePlayer;
+    }
+
     public CodeExecutor(Devlopement main, Location loc, Player linePlayer) {
         this.main = main;
         this.loc = loc;
         direction = 0;
         this.linePlayer = linePlayer;
+
 
 
         loc.add(0, 1, 0);

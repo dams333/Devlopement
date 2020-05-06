@@ -4,6 +4,7 @@ import ch.dams333.damsLib.DamsLIB;
 import ch.dams333.devlopement.commands.admin.DevItemsCommand;
 import ch.dams333.devlopement.commands.admin.DevModCommand;
 import ch.dams333.devlopement.events.actions.ClickInInventory;
+import ch.dams333.devlopement.events.actions.CloseInventoryEvent;
 import ch.dams333.devlopement.events.block.PlaceDevBlock;
 import ch.dams333.devlopement.events.startLine.StartLineEvents;
 import ch.dams333.devlopement.objects.devBlock.DevBlock;
@@ -50,6 +51,7 @@ public class Devlopement extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlaceDevBlock(this), this);
         getServer().getPluginManager().registerEvents(new ClickInInventory(this), this);
         getServer().getPluginManager().registerEvents(new StartLineEvents(this), this);
+        getServer().getPluginManager().registerEvents(new CloseInventoryEvent(this), this);
 
 
         BlocksDeserializer.deserialize(this);
@@ -134,6 +136,10 @@ public class Devlopement extends JavaPlugin {
             }
         }
         this.devBlocks.add(devBlock);
+    }
+
+    public void closeModif(Player player) {
+        this.inModif.remove(player);
     }
 }
 

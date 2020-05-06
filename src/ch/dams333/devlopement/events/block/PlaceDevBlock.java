@@ -2,6 +2,8 @@ package ch.dams333.devlopement.events.block;
 
 import ch.dams333.devlopement.Devlopement;
 import ch.dams333.devlopement.objects.devBlock.blockType.BlockType;
+import ch.dams333.devlopement.objects.devBlock.blocks.give_blocks.GiveEffectsBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.give_blocks.GiveItemsBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.DevStartBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.EventStartBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.wait_blocks.FiveSecondBlock;
@@ -41,7 +43,12 @@ public class PlaceDevBlock implements Listener {
                     if(blockType.toString().equalsIgnoreCase(BlockType.EVENT_START.toString())){
                         main.addDevBlock(new EventStartBlock(main, e.getBlock().getLocation()));
                     }
-
+                    if(blockType.toString().equalsIgnoreCase(BlockType.GIVE_ITEMS.toString())){
+                        main.addDevBlock(new GiveItemsBlock(main, e.getBlock().getLocation()));
+                    }
+                    if(blockType.toString().equalsIgnoreCase(BlockType.GIVE_EFFECTS.toString())){
+                        main.addDevBlock(new GiveEffectsBlock(main, e.getBlock().getLocation()));
+                    }
                 }
             }
         }

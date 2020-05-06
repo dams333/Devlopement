@@ -7,8 +7,8 @@ import ch.dams333.devlopement.objects.executor.CodeExecutor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,7 +49,7 @@ public class TenSecondBlock extends DevBlock{
     }
 
     @Override
-    public void clickOn(Player p) {
+    public void clickOn(PlayerInteractEvent p) {
 
     }
 

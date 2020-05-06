@@ -1,6 +1,8 @@
 package ch.dams333.devlopement.objects.devBlock.blocks;
 
 import ch.dams333.devlopement.Devlopement;
+import ch.dams333.devlopement.objects.devBlock.blocks.give_blocks.GiveEffectsBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.give_blocks.GiveItemsBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.DevStartBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.EventStartBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.wait_blocks.FiveSecondBlock;
@@ -42,6 +44,16 @@ public class BlocksDeserializer {
         if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "start" + File.separator + "event_start").listFiles() != null) {
             for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "start" + File.separator + "event_start").listFiles())) {
                 main.addDevBlock(new EventStartBlock(file, main));
+            }
+        }
+        if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "give" + File.separator + "give_items").listFiles() != null) {
+            for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "give" + File.separator + "give_items").listFiles())) {
+                main.addDevBlock(new GiveItemsBlock(file, main));
+            }
+        }
+        if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "give" + File.separator + "give_effects").listFiles() != null) {
+            for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "give" + File.separator + "give_effects").listFiles())) {
+                main.addDevBlock(new GiveEffectsBlock(file, main));
             }
         }
     }

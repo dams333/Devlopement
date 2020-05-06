@@ -42,6 +42,9 @@ public class DevItemsCommand implements CommandExecutor {
                 setItem(inv, 11, BlockType.TEN_SECOND);
                 setItem(inv, 12, BlockType.THIRTY_SECOND);
 
+                setItem(inv, 18, BlockType.GIVE_ITEMS);
+                setItem(inv, 19, BlockType.GIVE_EFFECTS);
+
                 p.openInventory(inv);
                 return true;
             }
