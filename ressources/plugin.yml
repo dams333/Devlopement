@@ -12,4 +12,7 @@ commands:
     permission: devlopement.commands.admin.devitems
   message:
     decription: Gerer vos messages
-    permission: davlopement.commands.admin.message
+    permission: devlopement.commands.admin.message
+  location:
+    description: Gerer vos locations
+    permission: devlopement.commands.admin.location
