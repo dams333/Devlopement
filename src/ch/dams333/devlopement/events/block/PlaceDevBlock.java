@@ -4,6 +4,10 @@ import ch.dams333.devlopement.Devlopement;
 import ch.dams333.devlopement.objects.devBlock.blockType.BlockType;
 import ch.dams333.devlopement.objects.devBlock.blocks.give_blocks.GiveEffectsBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.give_blocks.GiveItemsBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.ActionbarMessageBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.ChatMessageBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.SubTitleMessageBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.TitleMessageBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.DevStartBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.EventStartBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.wait_blocks.FiveSecondBlock;
@@ -48,6 +52,18 @@ public class PlaceDevBlock implements Listener {
                     }
                     if(blockType.toString().equalsIgnoreCase(BlockType.GIVE_EFFECTS.toString())){
                         main.addDevBlock(new GiveEffectsBlock(main, e.getBlock().getLocation()));
+                    }
+                    if(blockType.toString().equalsIgnoreCase(BlockType.CHAT_MESSAGE.toString())){
+                        main.addDevBlock(new ChatMessageBlock(main, e.getBlock().getLocation()));
+                    }
+                    if(blockType.toString().equalsIgnoreCase(BlockType.TITLE_MESSAGE.toString())){
+                        main.addDevBlock(new TitleMessageBlock(main, e.getBlock().getLocation()));
+                    }
+                    if(blockType.toString().equalsIgnoreCase(BlockType.SUBTITLE_MESSAGE.toString())){
+                        main.addDevBlock(new SubTitleMessageBlock(main, e.getBlock().getLocation()));
+                    }
+                    if(blockType.toString().equalsIgnoreCase(BlockType.ACTIONBAR_MESSAGE.toString())){
+                        main.addDevBlock(new ActionbarMessageBlock(main, e.getBlock().getLocation()));
                     }
                 }
             }

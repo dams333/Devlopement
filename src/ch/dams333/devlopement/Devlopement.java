@@ -3,12 +3,14 @@ package ch.dams333.devlopement;
 import ch.dams333.damsLib.DamsLIB;
 import ch.dams333.devlopement.commands.admin.DevItemsCommand;
 import ch.dams333.devlopement.commands.admin.DevModCommand;
+import ch.dams333.devlopement.commands.admin.MessageCommand;
 import ch.dams333.devlopement.events.actions.ClickInInventory;
 import ch.dams333.devlopement.events.actions.CloseInventoryEvent;
 import ch.dams333.devlopement.events.block.PlaceDevBlock;
 import ch.dams333.devlopement.events.startLine.StartLineEvents;
 import ch.dams333.devlopement.objects.devBlock.DevBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.BlocksDeserializer;
+import ch.dams333.devlopement.objects.messages.MessagesManager;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -24,12 +26,13 @@ import java.util.Map;
 public class Devlopement extends JavaPlugin {
 
     private List<String> devmod;
-
     private List<DevBlock> devBlocks;
 
     private Map<Player, DevBlock> inModif;
 
     public static DamsLIB API;
+
+    public MessagesManager messagesManager;
 
     @Override
     public void onEnable() {
@@ -40,6 +43,8 @@ public class Devlopement extends JavaPlugin {
 
         API = (DamsLIB) getServer().getPluginManager().getPlugin("DamsLIB");
 
+        this.messagesManager = new MessagesManager(this);
+
         devmod = new ArrayList<>();
         devBlocks = new ArrayList<>();
         inModif = new HashMap<>();
@@ -47,6 +52,7 @@ public class Devlopement extends JavaPlugin {
 
         getCommand("devmod").setExecutor(new DevModCommand(this));
         getCommand("devitems").setExecutor(new DevItemsCommand(this));
+        getCommand("message").setExecutor(new MessageCommand(this));
 
         getServer().getPluginManager().registerEvents(new PlaceDevBlock(this), this);
         getServer().getPluginManager().registerEvents(new ClickInInventory(this), this);
@@ -55,6 +61,7 @@ public class Devlopement extends JavaPlugin {
 
 
         BlocksDeserializer.deserialize(this);
+        messagesManager.deserialize();
 
 
         //DEBUG ADD DAMS333 TO DEVMOD
@@ -67,6 +74,7 @@ public class Devlopement extends JavaPlugin {
         for(DevBlock devBlock : this.devBlocks){
             devBlock.serialize();
         }
+        messagesManager.serialize();
     }
 
     public boolean isInDevMod(Player p) {

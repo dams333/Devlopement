@@ -14,6 +14,11 @@ public enum BlockType {
     GIVE_ITEMS("give_items", ChatColor.GOLD + "Donner des items au joueur", Arrays.asList(ChatColor.GRAY +"Donne au joueur les items présents dans le coffre", ChatColor.GRAY + "SHIFT + clique droit pour choisir à qui donner"), Material.CHEST, (byte)0),
     GIVE_EFFECTS("give_effects", ChatColor.GOLD + "Donner des effets au joueur", Arrays.asList(ChatColor.GRAY +"Donne au joueur les effets des potions présentes dans l'alambic", ChatColor.GRAY + "SHIFT + clique droit pour choisir à qui donner"), Material.BREWING_STAND, (byte)0),
 
+    CHAT_MESSAGE("chat_message", ChatColor.GOLD + "Message dans le chat", Arrays.asList(ChatColor.GRAY +"Envoie un message dans le chat du joueur", ChatColor.GRAY + "SHIFT + clique droit pour choisir à qui envoyer"), Material.SEA_LANTERN, (byte)0),
+    TITLE_MESSAGE("title_message", ChatColor.GOLD + "Message en Title", Arrays.asList(ChatColor.GRAY +"Envoie un message en Title au joueur", ChatColor.GRAY + "SHIFT + clique droit pour choisir à qui envoyer"), Material.PRISMARINE, (byte)0),
+    SUBTITLE_MESSAGE("subtitle_message", ChatColor.GOLD + "Message en SubTitle", Arrays.asList(ChatColor.GRAY +"Envoie un message en SubTitle au joueur", ChatColor.GRAY + "(Demande un Title au préalable)", ChatColor.GRAY + "SHIFT + clique droit pour choisir à qui envoyer"), Material.DARK_PRISMARINE, (byte)0),
+    ACTIONBAR_MESSAGE("actionbar_message", ChatColor.GOLD + "Message dans l'actionbar", Arrays.asList(ChatColor.GRAY +"Envoie un message dans l'actionbar du joueur", ChatColor.GRAY + "SHIFT + clique droit pour choisir à qui envoyer"), Material.PRISMARINE_BRICKS, (byte)0),
+
     ONE_SECOND("one_second", ChatColor.GOLD + "Attendre 1 seconde", Arrays.asList(ChatColor.GRAY + "Quand la ligne passe sur ce bloc", ChatColor.GRAY + "elle attend 1 seconde avant d'avancer"), Material.QUARTZ_SLAB, (byte)0),
     FIVE_SECOND("five_second", ChatColor.GOLD + "Attendre 5 seconde", Arrays.asList(ChatColor.GRAY + "Quand la ligne passe sur ce bloc", ChatColor.GRAY + "elle attend 5 seconde avant d'avancer"), Material.BRICK_SLAB, (byte)0),
     TEN_SECOND("ten_second", ChatColor.GOLD + "Attendre 10 seconde", Arrays.asList(ChatColor.GRAY + "Quand la ligne passe sur ce bloc", ChatColor.GRAY + "elle attend 10 seconde avant d'avancer"), Material.STONE_BRICK_SLAB, (byte)0),

@@ -45,7 +45,7 @@ public abstract class DevBlock implements Listener {
 
     public abstract BlockType getBlockType();
     public abstract void serialize();
-    public abstract void clickOn(PlayerInteractEvent p);
+    public abstract void clickOn(PlayerInteractEvent e);
     public abstract void inventoryOn(InventoryClickEvent e);
 
     public UUID getUuid() {
@@ -91,6 +91,7 @@ public abstract class DevBlock implements Listener {
             if (e.getClickedBlock() != null) {
                 if (main.isInDevMod(e.getPlayer())) {
                     if (compareToSelfLoc(e.getClickedBlock().getLocation())) {
+                        e.setCancelled(true);
                         clickOn(e);
                     }
                 }
@@ -104,6 +105,7 @@ public abstract class DevBlock implements Listener {
         if(main.isInModif(p)){
             if(main.getInModif(p).getUuid().equals(this.uuid)){
                 if(e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR) {
+                    e.setCancelled(true);
                     inventoryOn(e);
                 }
             }

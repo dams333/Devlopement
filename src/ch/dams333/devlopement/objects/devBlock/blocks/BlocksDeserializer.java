@@ -3,6 +3,10 @@ package ch.dams333.devlopement.objects.devBlock.blocks;
 import ch.dams333.devlopement.Devlopement;
 import ch.dams333.devlopement.objects.devBlock.blocks.give_blocks.GiveEffectsBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.give_blocks.GiveItemsBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.ActionbarMessageBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.ChatMessageBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.SubTitleMessageBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.TitleMessageBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.DevStartBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.EventStartBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.wait_blocks.FiveSecondBlock;
@@ -54,6 +58,26 @@ public class BlocksDeserializer {
         if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "give" + File.separator + "give_effects").listFiles() != null) {
             for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "give" + File.separator + "give_effects").listFiles())) {
                 main.addDevBlock(new GiveEffectsBlock(file, main));
+            }
+        }
+        if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "message" + File.separator + "chat_message").listFiles() != null) {
+            for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "message" + File.separator + "chat_message").listFiles())) {
+                main.addDevBlock(new ChatMessageBlock(file, main));
+            }
+        }
+        if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "message" + File.separator + "title_message").listFiles() != null) {
+            for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "message" + File.separator + "title_message").listFiles())) {
+                main.addDevBlock(new TitleMessageBlock(file, main));
+            }
+        }
+        if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "message" + File.separator + "subtitle_message").listFiles() != null) {
+            for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "message" + File.separator + "subtitle_message").listFiles())) {
+                main.addDevBlock(new SubTitleMessageBlock(file, main));
+            }
+        }
+        if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "message" + File.separator + "actionbar_message").listFiles() != null) {
+            for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "message" + File.separator + "actionbar_message").listFiles())) {
+                main.addDevBlock(new ActionbarMessageBlock(file, main));
             }
         }
     }

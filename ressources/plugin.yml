@@ -10,3 +10,6 @@ commands:
   devitems:
     description: Ouvrir les items de developpement
     permission: devlopement.commands.admin.devitems
+  message:
+    decription: Gerer vos messages
+    permission: davlopement.commands.admin.message
