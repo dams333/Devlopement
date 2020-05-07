@@ -10,6 +10,8 @@ import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.ActionbarMe
 import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.ChatMessageBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.SubTitleMessageBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.TitleMessageBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.player_blocks.GameModeBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.player_blocks.PvpBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.DevStartBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.EventStartBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.tp_blocks.LastLocationTeleportationBlock;
@@ -19,7 +21,6 @@ import ch.dams333.devlopement.objects.devBlock.blocks.wait_blocks.FiveSecondBloc
 import ch.dams333.devlopement.objects.devBlock.blocks.wait_blocks.OneSecondBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.wait_blocks.TenSecondBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.wait_blocks.ThirtySecondBlock;
-import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -85,6 +86,12 @@ public class PlaceDevBlock implements Listener {
                     }
                     if(blockType.toString().equalsIgnoreCase(BlockType.CLEAR_ITEMS.toString())){
                         main.addDevBlock(new ClearItemsBlock(main, e.getBlock().getLocation()));
+                    }
+                    if(blockType.toString().equalsIgnoreCase(BlockType.GAMEMODE.toString())){
+                        main.addDevBlock(new GameModeBlock(main, e.getBlock().getLocation()));
+                    }
+                    if(blockType.toString().equalsIgnoreCase(BlockType.PVP.toString())){
+                        main.addDevBlock(new PvpBlock(main, e.getBlock().getLocation()));
                     }
                 }
             }

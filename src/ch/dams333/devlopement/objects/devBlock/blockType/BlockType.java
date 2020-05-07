@@ -17,6 +17,9 @@ public enum BlockType {
     CLEAR_ITEMS("clear_items", ChatColor.GOLD + "Clear les objets", Arrays.asList(ChatColor.GRAY +"Vide entièrement l'inventaire du joueur", ChatColor.GRAY + "Clique droit pour choisir qui vider"), Material.WHITE_STAINED_GLASS, (byte)0),
     CLEAR_EFFECTS("clear_effects", ChatColor.GOLD + "Clear les effets", Arrays.asList(ChatColor.GRAY +"Stope tous les effets en cours du joueur", ChatColor.GRAY + "Clique droit pour choisir qui stoper"), Material.YELLOW_STAINED_GLASS, (byte)0),
 
+    GAMEMODE("gamemode", ChatColor.GOLD + "Change le GameMode", Arrays.asList(ChatColor.GRAY +"Définit le mode de jeu du joueur", ChatColor.GRAY + "Clique droit pour choisir qui changer"), Material.REDSTONE_BLOCK, (byte)0),
+    PVP("pvp", ChatColor.GOLD + "Modifie le PVP", Arrays.asList(ChatColor.GRAY +"Active ou désactive le combat entre joueurs"), Material.GOLD_BLOCK, (byte)0),
+
     LOCATION_TP("location_tp", ChatColor.GOLD + "Téléporter le joueur", Arrays.asList(ChatColor.GRAY +"Téléporte le joueur à une location définie", ChatColor.GRAY + "SHIFT + clique droit pour choisir qui téléporter"), Material.END_STONE, (byte)0),
     LIST_TP("list_tp", ChatColor.GOLD + "Téléporter à une liste de location", Arrays.asList(ChatColor.GRAY +"Téléporte les joueurs selon une liste de locations", ChatColor.GRAY + "SHIFT + clique droit pour choisir qui téléporter"), Material.END_PORTAL_FRAME, (byte)0),
     LAST_TP("last_tp", ChatColor.GOLD + "Téléporter à la dérnière location", Arrays.asList(ChatColor.GRAY +"Téléporte à la dérnière location à laquelle le joueur a été TP", ChatColor.GRAY + "SHIFT + clique droit pour choisir qui téléporter"), Material.SLIME_BLOCK, (byte)0),

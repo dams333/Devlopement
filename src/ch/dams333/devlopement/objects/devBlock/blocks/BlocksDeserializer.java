@@ -9,6 +9,8 @@ import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.ActionbarMe
 import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.ChatMessageBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.SubTitleMessageBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.TitleMessageBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.player_blocks.GameModeBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.player_blocks.PvpBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.DevStartBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.EventStartBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.tp_blocks.LastLocationTeleportationBlock;
@@ -108,6 +110,16 @@ public class BlocksDeserializer {
         if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "clear" + File.separator + "clear_effects").listFiles() != null) {
             for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "clear" + File.separator + "clear_effects").listFiles())) {
                 main.addDevBlock(new ClearEffectsBlock(file, main));
+            }
+        }
+        if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "player" + File.separator + "gamemode").listFiles() != null) {
+            for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "player" + File.separator + "gamemode").listFiles())) {
+                main.addDevBlock(new GameModeBlock(file, main));
+            }
+        }
+        if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "player" + File.separator + "pvp").listFiles() != null) {
+            for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "player" + File.separator + "pvp").listFiles())) {
+                main.addDevBlock(new PvpBlock(file, main));
             }
         }
     }

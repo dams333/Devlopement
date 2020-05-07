@@ -92,14 +92,18 @@ public class StartLineEvents implements Listener {
                 }
 
                 if (damager != null) {
+                    if (main.isPvp()) {
 
-                    for (DevBlock devBlock : main.getDevBlocks()) {
-                        if (devBlock.getBlockType() == BlockType.EVENT_START) {
-                            EventStartBlock block = (EventStartBlock) devBlock;
-                            if (block.getEventStart() == EventStart.Kill) {
-                                new CodeExecutor(main, block.getLoc().clone(), damager);
+                        for (DevBlock devBlock : main.getDevBlocks()) {
+                            if (devBlock.getBlockType() == BlockType.EVENT_START) {
+                                EventStartBlock block = (EventStartBlock) devBlock;
+                                if (block.getEventStart() == EventStart.Kill) {
+                                    new CodeExecutor(main, block.getLoc().clone(), damager);
+                                }
                             }
                         }
+                    }else{
+                        e.setCancelled(true);
                     }
                 }
             }

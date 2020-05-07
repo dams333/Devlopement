@@ -56,6 +56,9 @@ public class DevItemsCommand implements CommandExecutor {
                 setItem(inv, 37, BlockType.LIST_TP);
                 setItem(inv, 38, BlockType.LAST_TP);
 
+                setItem(inv, 45, BlockType.GAMEMODE);
+                setItem(inv, 46, BlockType.PVP);
+
                 p.openInventory(inv);
                 return true;
             }

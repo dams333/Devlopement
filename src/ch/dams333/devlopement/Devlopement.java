@@ -13,6 +13,7 @@ import ch.dams333.devlopement.objects.devBlock.DevBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.BlocksDeserializer;
 import ch.dams333.devlopement.objects.locations.LocationsManager;
 import ch.dams333.devlopement.objects.messages.MessagesManager;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -36,6 +37,16 @@ public class Devlopement extends JavaPlugin {
 
     public MessagesManager messagesManager;
     public LocationsManager locationsManager;
+
+    private boolean pvp;
+
+    public boolean isPvp() {
+        return pvp;
+    }
+
+    public void setPvp(boolean pvp) {
+        this.pvp = pvp;
+    }
 
     @Override
     public void onEnable() {
@@ -69,6 +80,11 @@ public class Devlopement extends JavaPlugin {
         messagesManager.deserialize();
         locationsManager.deserialize();
 
+        this.pvp = true;
+        if(getConfig().isConfigurationSection("Global variables")){
+            this.pvp = getConfig().getBoolean("PVP");
+        }
+
 
         //DEBUG ADD DAMS333 TO DEVMOD
         this.devmod.add("Dams333");
@@ -82,6 +98,16 @@ public class Devlopement extends JavaPlugin {
         }
         messagesManager.serialize();
         locationsManager.serialize();
+
+        for(String key : getConfig().getKeys(false)){
+            getConfig().set(key, null);
+        }
+
+        ConfigurationSection sec = getConfig().createSection("Global variables");
+        sec.set("PVP", this.pvp);
+
+        saveConfig();
+
     }
 
     public boolean isInDevMod(Player p) {
