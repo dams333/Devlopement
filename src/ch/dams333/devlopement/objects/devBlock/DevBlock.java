@@ -91,7 +91,6 @@ public abstract class DevBlock implements Listener {
             if (e.getClickedBlock() != null) {
                 if (main.isInDevMod(e.getPlayer())) {
                     if (compareToSelfLoc(e.getClickedBlock().getLocation())) {
-                        e.setCancelled(true);
                         clickOn(e);
                     }
                 }

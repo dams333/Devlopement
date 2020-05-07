@@ -14,6 +14,10 @@ public enum BlockType {
     GIVE_ITEMS("give_items", ChatColor.GOLD + "Donner des items au joueur", Arrays.asList(ChatColor.GRAY +"Donne au joueur les items présents dans le coffre", ChatColor.GRAY + "SHIFT + clique droit pour choisir à qui donner"), Material.CHEST, (byte)0),
     GIVE_EFFECTS("give_effects", ChatColor.GOLD + "Donner des effets au joueur", Arrays.asList(ChatColor.GRAY +"Donne au joueur les effets des potions présentes dans l'alambic", ChatColor.GRAY + "SHIFT + clique droit pour choisir à qui donner"), Material.BREWING_STAND, (byte)0),
 
+    LOCATION_TP("location_tp", ChatColor.GOLD + "Téléporter le joueur", Arrays.asList(ChatColor.GRAY +"Téléporte le joueur à une location définie", ChatColor.GRAY + "SHIFT + clique droit pour choisir qui téléporter"), Material.END_STONE, (byte)0),
+    LIST_TP("list_tp", ChatColor.GOLD + "Téléporter à une liste de location", Arrays.asList(ChatColor.GRAY +"Téléporte les joueurs selon une liste de locations", ChatColor.GRAY + "SHIFT + clique droit pour choisir qui téléporter"), Material.END_PORTAL_FRAME, (byte)0),
+    LAST_TP("last_tp", ChatColor.GOLD + "Téléporter à la dérnière location", Arrays.asList(ChatColor.GRAY +"Téléporte à la dérnière location à laquelle le joueur a été TP", ChatColor.GRAY + "SHIFT + clique droit pour choisir qui téléporter"), Material.SLIME_BLOCK, (byte)0),
+
     CHAT_MESSAGE("chat_message", ChatColor.GOLD + "Message dans le chat", Arrays.asList(ChatColor.GRAY +"Envoie un message dans le chat du joueur", ChatColor.GRAY + "SHIFT + clique droit pour choisir à qui envoyer"), Material.SEA_LANTERN, (byte)0),
     TITLE_MESSAGE("title_message", ChatColor.GOLD + "Message en Title", Arrays.asList(ChatColor.GRAY +"Envoie un message en Title au joueur", ChatColor.GRAY + "SHIFT + clique droit pour choisir à qui envoyer"), Material.PRISMARINE, (byte)0),
     SUBTITLE_MESSAGE("subtitle_message", ChatColor.GOLD + "Message en SubTitle", Arrays.asList(ChatColor.GRAY +"Envoie un message en SubTitle au joueur", ChatColor.GRAY + "(Demande un Title au préalable)", ChatColor.GRAY + "SHIFT + clique droit pour choisir à qui envoyer"), Material.DARK_PRISMARINE, (byte)0),

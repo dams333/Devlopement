@@ -1,18 +1,21 @@
 package ch.dams333.devlopement.objects.locations;
 
 import ch.dams333.devlopement.Devlopement;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.World;
+import net.minecraft.server.v1_15_R1.NBTTagCompound;
+import org.bukkit.*;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.craftbukkit.v1_15_R1.inventory.CraftItemStack;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class LocationsManager {
 
@@ -214,5 +217,115 @@ public class LocationsManager {
         GameLocation gameLocation = getPlayerLocationByName(p, locationName);
         list.removeLocation(gameLocation.getUuid());
         this.gameLocationsLists.set(index, list);
+    }
+
+
+    public void loadLocationsInventory(Player p, int page, UUID selected){
+
+        Inventory inv = Bukkit.createInventory(null, 54, ChatColor.GOLD + "Choix de la location > Page " + page);
+
+        inv.setItem(45, main.API.itemStackManager.create(Material.ARROW, ChatColor.GRAY + "Page précédente"));
+        inv.setItem(53, main.API.itemStackManager.create(Material.ARROW, ChatColor.GRAY + "Page suivante"));
+
+
+        int messagePerPage = 5 * 9;
+
+        int start = (page - 1) * messagePerPage;
+
+
+        for(int i = 0; i < messagePerPage; i++){
+
+            if((getPlayerLocations(p).size() - 1) >= start){
+                GameLocation loc = getPlayerLocations(p).get(start);
+                ItemStack it = main.API.itemStackManager.create(Material.PAPER, getLocation(loc.getUuid()).getName());
+                if(selected != null && loc.getUuid().equals(selected)){
+                    it.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
+                    ItemMeta itM = it.getItemMeta();
+                    itM.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                    itM.setLore(Arrays.asList(ChatColor.GREEN + "Sélectionné"));
+                    it.setItemMeta(itM);
+                }
+
+                net.minecraft.server.v1_15_R1.ItemStack stack = CraftItemStack.asNMSCopy(it);
+                NBTTagCompound tag = stack.getTag() != null ? stack.getTag() : new NBTTagCompound();
+                tag.setString("uuid", loc.getUuid().toString());
+                stack.setTag(tag);
+                it = CraftItemStack.asCraftMirror(stack);
+
+                inv.setItem(i, it);
+            }else{
+                break;
+            }
+            start++;
+        }
+
+        p.openInventory(inv);
+
+    }
+
+    public void loadLocationsListsInventory(Player p, int page, UUID selected){
+
+        Inventory inv = Bukkit.createInventory(null, 54, ChatColor.GOLD + "Choix de la liste de locations > Page " + page);
+
+        inv.setItem(45, main.API.itemStackManager.create(Material.ARROW, ChatColor.GRAY + "Page précédente"));
+        inv.setItem(53, main.API.itemStackManager.create(Material.ARROW, ChatColor.GRAY + "Page suivante"));
+
+
+        int messagePerPage = 5 * 9;
+
+        int start = (page - 1) * messagePerPage;
+
+
+        for(int i = 0; i < messagePerPage; i++){
+
+            if((getPlayerLocationsLists(p).size() - 1) >= start){
+                GameLocationsList loc = getPlayerLocationsLists(p).get(start);
+                ItemStack it = main.API.itemStackManager.create(Material.PAPER, getLocationsList(loc.getUuid()).getName());
+                if(selected != null && loc.getUuid().equals(selected)){
+                    it.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
+                    ItemMeta itM = it.getItemMeta();
+                    itM.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                    itM.setLore(Arrays.asList(ChatColor.GREEN + "Sélectionné"));
+                    it.setItemMeta(itM);
+                }
+
+                net.minecraft.server.v1_15_R1.ItemStack stack = CraftItemStack.asNMSCopy(it);
+                NBTTagCompound tag = stack.getTag() != null ? stack.getTag() : new NBTTagCompound();
+                tag.setString("uuid", loc.getUuid().toString());
+                stack.setTag(tag);
+                it = CraftItemStack.asCraftMirror(stack);
+
+                inv.setItem(i, it);
+            }else{
+                break;
+            }
+            start++;
+        }
+
+        p.openInventory(inv);
+
+    }
+
+    public GameLocationsList getLocationsList(UUID uuid) {
+        for(GameLocationsList list : this.gameLocationsLists){
+            if(list.getUuid().equals(uuid)){
+                return list;
+            }
+        }
+        return null;
+    }
+
+    private Map<UUID, Location> last = new HashMap<>();
+
+    public void tp(Player p, Location location) {
+        last.put(p.getUniqueId(), location);
+    }
+
+    public boolean hasLastTP(Player p) {
+        return this.last.containsKey(p.getUniqueId());
+    }
+
+    public void teleportToLast(Player p) {
+        p.teleport(this.last.get(p.getUniqueId()));
     }
 }

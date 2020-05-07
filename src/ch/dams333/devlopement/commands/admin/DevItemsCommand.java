@@ -50,6 +50,10 @@ public class DevItemsCommand implements CommandExecutor {
                 setItem(inv, 29, BlockType.SUBTITLE_MESSAGE);
                 setItem(inv, 30, BlockType.ACTIONBAR_MESSAGE);
 
+                setItem(inv, 36, BlockType.LOCATION_TP);
+                setItem(inv, 37, BlockType.LIST_TP);
+                setItem(inv, 38, BlockType.LAST_TP);
+
                 p.openInventory(inv);
                 return true;
             }

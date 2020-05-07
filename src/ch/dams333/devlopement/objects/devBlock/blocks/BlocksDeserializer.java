@@ -9,6 +9,9 @@ import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.SubTitleMes
 import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.TitleMessageBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.DevStartBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.EventStartBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.tp_blocks.LastLocationTeleportationBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.tp_blocks.LocationTeleportationBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.tp_blocks.LocationsListTeleportationBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.wait_blocks.FiveSecondBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.wait_blocks.OneSecondBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.wait_blocks.TenSecondBlock;
@@ -78,6 +81,21 @@ public class BlocksDeserializer {
         if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "message" + File.separator + "actionbar_message").listFiles() != null) {
             for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "message" + File.separator + "actionbar_message").listFiles())) {
                 main.addDevBlock(new ActionbarMessageBlock(file, main));
+            }
+        }
+        if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "tp" + File.separator + "location_tp").listFiles() != null) {
+            for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "tp" + File.separator + "location_tp").listFiles())) {
+                main.addDevBlock(new LocationTeleportationBlock(file, main));
+            }
+        }
+        if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "tp" + File.separator + "list_tp").listFiles() != null) {
+            for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "tp" + File.separator + "list_tp").listFiles())) {
+                main.addDevBlock(new LocationsListTeleportationBlock(file, main));
+            }
+        }
+        if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "tp" + File.separator + "last_tp").listFiles() != null) {
+            for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "tp" + File.separator + "last_tp").listFiles())) {
+                main.addDevBlock(new LastLocationTeleportationBlock(file, main));
             }
         }
     }
