@@ -111,7 +111,17 @@ public class GiveItemsBlock extends DevBlock{
         }else{
             for(ItemStack it : ((Chest)getLoc().getBlock().getState()).getInventory()){
                 if(it != null){
-                    codeExecutor.getLinePlayer().getInventory().addItem(it);
+                    if(getMain().API.itemStackManager.isBoots(it) && codeExecutor.getLinePlayer().getInventory().getBoots() == null){
+                        codeExecutor.getLinePlayer().getInventory().setBoots(it);
+                    }else if(getMain().API.itemStackManager.isLeggings(it) && codeExecutor.getLinePlayer().getInventory().getLeggings() == null){
+                        codeExecutor.getLinePlayer().getInventory().setLeggings(it);
+                    }else if(getMain().API.itemStackManager.isChestplate(it) && codeExecutor.getLinePlayer().getInventory().getChestplate() == null){
+                        codeExecutor.getLinePlayer().getInventory().setChestplate(it);
+                    }else if(getMain().API.itemStackManager.isHelmet(it) && codeExecutor.getLinePlayer().getInventory().getHelmet() == null){
+                        codeExecutor.getLinePlayer().getInventory().setHelmet(it);
+                    }else {
+                        codeExecutor.getLinePlayer().getInventory().addItem(it);
+                    }
                 }
             }
         }
