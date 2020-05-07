@@ -44,6 +44,8 @@ public class DevItemsCommand implements CommandExecutor {
 
                 setItem(inv, 18, BlockType.GIVE_ITEMS);
                 setItem(inv, 19, BlockType.GIVE_EFFECTS);
+                setItem(inv, 20, BlockType.CLEAR_ITEMS);
+                setItem(inv, 21, BlockType.CLEAR_EFFECTS);
 
                 setItem(inv, 27, BlockType.CHAT_MESSAGE);
                 setItem(inv, 28, BlockType.TITLE_MESSAGE);

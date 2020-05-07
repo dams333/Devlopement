@@ -1,6 +1,8 @@
 package ch.dams333.devlopement.objects.devBlock.blocks;
 
 import ch.dams333.devlopement.Devlopement;
+import ch.dams333.devlopement.objects.devBlock.blocks.clear_blocks.ClearEffectsBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.clear_blocks.ClearItemsBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.give_blocks.GiveEffectsBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.give_blocks.GiveItemsBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.ActionbarMessageBlock;
@@ -96,6 +98,16 @@ public class BlocksDeserializer {
         if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "tp" + File.separator + "last_tp").listFiles() != null) {
             for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "tp" + File.separator + "last_tp").listFiles())) {
                 main.addDevBlock(new LastLocationTeleportationBlock(file, main));
+            }
+        }
+        if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "clear" + File.separator + "clear_items").listFiles() != null) {
+            for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "clear" + File.separator + "clear_items").listFiles())) {
+                main.addDevBlock(new ClearItemsBlock(file, main));
+            }
+        }
+        if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "clear" + File.separator + "clear_effects").listFiles() != null) {
+            for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "clear" + File.separator + "clear_effects").listFiles())) {
+                main.addDevBlock(new ClearEffectsBlock(file, main));
             }
         }
     }

@@ -2,6 +2,8 @@ package ch.dams333.devlopement.events.block;
 
 import ch.dams333.devlopement.Devlopement;
 import ch.dams333.devlopement.objects.devBlock.blockType.BlockType;
+import ch.dams333.devlopement.objects.devBlock.blocks.clear_blocks.ClearEffectsBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.clear_blocks.ClearItemsBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.give_blocks.GiveEffectsBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.give_blocks.GiveItemsBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.ActionbarMessageBlock;
@@ -17,6 +19,7 @@ import ch.dams333.devlopement.objects.devBlock.blocks.wait_blocks.FiveSecondBloc
 import ch.dams333.devlopement.objects.devBlock.blocks.wait_blocks.OneSecondBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.wait_blocks.TenSecondBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.wait_blocks.ThirtySecondBlock;
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -76,6 +79,12 @@ public class PlaceDevBlock implements Listener {
                     }
                     if(blockType.toString().equalsIgnoreCase(BlockType.LAST_TP.toString())){
                         main.addDevBlock(new LastLocationTeleportationBlock(main, e.getBlock().getLocation()));
+                    }
+                    if(blockType.toString().equalsIgnoreCase(BlockType.CLEAR_EFFECTS.toString())){
+                        main.addDevBlock(new ClearEffectsBlock(main, e.getBlock().getLocation()));
+                    }
+                    if(blockType.toString().equalsIgnoreCase(BlockType.CLEAR_ITEMS.toString())){
+                        main.addDevBlock(new ClearItemsBlock(main, e.getBlock().getLocation()));
                     }
                 }
             }

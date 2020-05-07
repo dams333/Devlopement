@@ -14,6 +14,9 @@ public enum BlockType {
     GIVE_ITEMS("give_items", ChatColor.GOLD + "Donner des items au joueur", Arrays.asList(ChatColor.GRAY +"Donne au joueur les items présents dans le coffre", ChatColor.GRAY + "SHIFT + clique droit pour choisir à qui donner"), Material.CHEST, (byte)0),
     GIVE_EFFECTS("give_effects", ChatColor.GOLD + "Donner des effets au joueur", Arrays.asList(ChatColor.GRAY +"Donne au joueur les effets des potions présentes dans l'alambic", ChatColor.GRAY + "SHIFT + clique droit pour choisir à qui donner"), Material.BREWING_STAND, (byte)0),
 
+    CLEAR_ITEMS("clear_items", ChatColor.GOLD + "Clear les objets", Arrays.asList(ChatColor.GRAY +"Vide entièrement l'inventaire du joueur", ChatColor.GRAY + "Clique droit pour choisir qui vider"), Material.WHITE_STAINED_GLASS, (byte)0),
+    CLEAR_EFFECTS("clear_effects", ChatColor.GOLD + "Clear les effets", Arrays.asList(ChatColor.GRAY +"Stope tous les effets en cours du joueur", ChatColor.GRAY + "Clique droit pour choisir qui stoper"), Material.YELLOW_STAINED_GLASS, (byte)0),
+
     LOCATION_TP("location_tp", ChatColor.GOLD + "Téléporter le joueur", Arrays.asList(ChatColor.GRAY +"Téléporte le joueur à une location définie", ChatColor.GRAY + "SHIFT + clique droit pour choisir qui téléporter"), Material.END_STONE, (byte)0),
     LIST_TP("list_tp", ChatColor.GOLD + "Téléporter à une liste de location", Arrays.asList(ChatColor.GRAY +"Téléporte les joueurs selon une liste de locations", ChatColor.GRAY + "SHIFT + clique droit pour choisir qui téléporter"), Material.END_PORTAL_FRAME, (byte)0),
     LAST_TP("last_tp", ChatColor.GOLD + "Téléporter à la dérnière location", Arrays.asList(ChatColor.GRAY +"Téléporte à la dérnière location à laquelle le joueur a été TP", ChatColor.GRAY + "SHIFT + clique droit pour choisir qui téléporter"), Material.SLIME_BLOCK, (byte)0),
