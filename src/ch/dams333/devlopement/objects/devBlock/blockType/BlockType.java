@@ -10,6 +10,9 @@ import java.util.List;
 public enum BlockType {
     EVENT_START("event_start", ChatColor.GOLD + "Démarrer une ligne après un évennement", Arrays.asList(ChatColor.GRAY +"Démarre une ligne lorsq'un évennement se produit", ChatColor.GRAY + "(Clique droit pour définir lequel)"), Material.DIAMOND_BLOCK, (byte)0),
     DEV_START("dev_start", ChatColor.GOLD + "Démarrer une ligne de test", Arrays.asList(ChatColor.GRAY +"Démarre une ligne en faisant clique droit"), Material.LAPIS_BLOCK, (byte)0),
+    ELSE_START("else_start", ChatColor.GOLD + "Démarrer une ligne 'si non'", Arrays.asList(ChatColor.GRAY +"Démarre une ligne quand la condition linkée n'est pas réalisé", ChatColor.GRAY + "/link pour lier à une condition"), Material.COAL_BLOCK, (byte)0),
+
+    PLAYER_CONDITION("player_condition", ChatColor.GOLD + "Teste le nombre de joueurs en ligne", Arrays.asList(ChatColor.GRAY +"Teste si le nombre de joueurs est", ChatColor.GRAY + "égale, inférieur ou supérieur à un nombre"), Material.HOPPER, (byte)0),
 
     GIVE_ITEMS("give_items", ChatColor.GOLD + "Donner des items au joueur", Arrays.asList(ChatColor.GRAY +"Donne au joueur les items présents dans le coffre", ChatColor.GRAY + "SHIFT + clique droit pour choisir à qui donner"), Material.CHEST, (byte)0),
     GIVE_EFFECTS("give_effects", ChatColor.GOLD + "Donner des effets au joueur", Arrays.asList(ChatColor.GRAY +"Donne au joueur les effets des potions présentes dans l'alambic", ChatColor.GRAY + "SHIFT + clique droit pour choisir à qui donner"), Material.BREWING_STAND, (byte)0),

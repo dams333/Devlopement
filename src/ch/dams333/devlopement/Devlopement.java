@@ -1,16 +1,15 @@
 package ch.dams333.devlopement;
 
 import ch.dams333.damsLib.DamsLIB;
-import ch.dams333.devlopement.commands.admin.DevItemsCommand;
-import ch.dams333.devlopement.commands.admin.DevModCommand;
-import ch.dams333.devlopement.commands.admin.LocationCommand;
-import ch.dams333.devlopement.commands.admin.MessageCommand;
+import ch.dams333.devlopement.commands.admin.*;
 import ch.dams333.devlopement.events.actions.ClickInInventory;
 import ch.dams333.devlopement.events.actions.CloseInventoryEvent;
+import ch.dams333.devlopement.events.actions.LinkEvent;
 import ch.dams333.devlopement.events.block.PlaceDevBlock;
 import ch.dams333.devlopement.events.startLine.StartLineEvents;
 import ch.dams333.devlopement.objects.devBlock.DevBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.BlocksDeserializer;
+import ch.dams333.devlopement.objects.devBlock.link.LinksManager;
 import ch.dams333.devlopement.objects.locations.LocationsManager;
 import ch.dams333.devlopement.objects.messages.MessagesManager;
 import org.bukkit.configuration.ConfigurationSection;
@@ -37,6 +36,7 @@ public class Devlopement extends JavaPlugin {
 
     public MessagesManager messagesManager;
     public LocationsManager locationsManager;
+    public LinksManager linksManager;
 
     private boolean pvp;
 
@@ -59,6 +59,7 @@ public class Devlopement extends JavaPlugin {
 
         this.messagesManager = new MessagesManager(this);
         this.locationsManager = new LocationsManager(this);
+        this.linksManager = new LinksManager(this);
 
         devmod = new ArrayList<>();
         devBlocks = new ArrayList<>();
@@ -69,16 +70,19 @@ public class Devlopement extends JavaPlugin {
         getCommand("devitems").setExecutor(new DevItemsCommand(this));
         getCommand("message").setExecutor(new MessageCommand(this));
         getCommand("location").setExecutor(new LocationCommand(this));
+        getCommand("link").setExecutor(new LinkCommand(this));
 
         getServer().getPluginManager().registerEvents(new PlaceDevBlock(this), this);
         getServer().getPluginManager().registerEvents(new ClickInInventory(this), this);
         getServer().getPluginManager().registerEvents(new StartLineEvents(this), this);
         getServer().getPluginManager().registerEvents(new CloseInventoryEvent(this), this);
+        getServer().getPluginManager().registerEvents(new LinkEvent(this), this);
 
 
         BlocksDeserializer.deserialize(this);
         messagesManager.deserialize();
         locationsManager.deserialize();
+        linksManager.deserialize();
 
         this.pvp = true;
         if(getConfig().isConfigurationSection("Global variables")){
@@ -98,6 +102,7 @@ public class Devlopement extends JavaPlugin {
         }
         messagesManager.serialize();
         locationsManager.serialize();
+        linksManager.serialize();
 
         for(String key : getConfig().getKeys(false)){
             getConfig().set(key, null);

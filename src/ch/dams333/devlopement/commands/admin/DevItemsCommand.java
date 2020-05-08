@@ -36,6 +36,7 @@ public class DevItemsCommand implements CommandExecutor {
 
                 setItem(inv, 0, BlockType.DEV_START);
                 setItem(inv, 1, BlockType.EVENT_START);
+                setItem(inv, 2, BlockType.ELSE_START);
 
                 setItem(inv, 9, BlockType.ONE_SECOND);
                 setItem(inv, 10, BlockType.FIVE_SECOND);
@@ -58,6 +59,8 @@ public class DevItemsCommand implements CommandExecutor {
 
                 setItem(inv, 45, BlockType.GAMEMODE);
                 setItem(inv, 46, BlockType.PVP);
+
+                setItem(inv, 5, BlockType.PLAYER_CONDITION);
 
                 p.openInventory(inv);
                 return true;

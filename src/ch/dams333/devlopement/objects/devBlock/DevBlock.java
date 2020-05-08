@@ -82,6 +82,9 @@ public abstract class DevBlock implements Listener {
     public void blockBreak(BlockBreakEvent e){
         if(e.getBlock().getLocation().getWorld() == loc.getWorld() && e.getBlock().getLocation().getX() == loc.getX() && e.getBlock().getLocation().getY() == loc.getY() && e.getBlock().getLocation().getZ() == loc.getZ()){
             main.removeBlock(this);
+            if(main.linksManager.isLinked(this.uuid)){
+                main.linksManager.breakLink(this.uuid);
+            }
         }
     }
 

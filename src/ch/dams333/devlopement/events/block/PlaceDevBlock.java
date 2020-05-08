@@ -4,6 +4,7 @@ import ch.dams333.devlopement.Devlopement;
 import ch.dams333.devlopement.objects.devBlock.blockType.BlockType;
 import ch.dams333.devlopement.objects.devBlock.blocks.clear_blocks.ClearEffectsBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.clear_blocks.ClearItemsBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.condition_blocks.PlayerConditionBlockBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.give_blocks.GiveEffectsBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.give_blocks.GiveItemsBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.ActionbarMessageBlock;
@@ -13,6 +14,7 @@ import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.TitleMessag
 import ch.dams333.devlopement.objects.devBlock.blocks.player_blocks.GameModeBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.player_blocks.PvpBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.DevStartBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.ElseStartBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.EventStartBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.tp_blocks.LastLocationTeleportationBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.tp_blocks.LocationTeleportationBlock;
@@ -92,6 +94,12 @@ public class PlaceDevBlock implements Listener {
                     }
                     if(blockType.toString().equalsIgnoreCase(BlockType.PVP.toString())){
                         main.addDevBlock(new PvpBlock(main, e.getBlock().getLocation()));
+                    }
+                    if(blockType.toString().equalsIgnoreCase(BlockType.ELSE_START.toString())){
+                        main.addDevBlock(new ElseStartBlock(main, e.getBlock().getLocation()));
+                    }
+                    if(blockType.toString().equalsIgnoreCase(BlockType.PLAYER_CONDITION.toString())){
+                        main.addDevBlock(new PlayerConditionBlockBlock(main, e.getBlock().getLocation()));
                     }
                 }
             }

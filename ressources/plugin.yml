@@ -16,3 +16,6 @@ commands:
   location:
     description: Gerer vos locations
     permission: devlopement.commands.admin.location
+  link:
+    description: Permet de lier une condition a un si non
+    permission: devlopement.commands.admin.link

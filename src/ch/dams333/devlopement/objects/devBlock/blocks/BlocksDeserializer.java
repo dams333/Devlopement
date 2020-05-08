@@ -3,6 +3,7 @@ package ch.dams333.devlopement.objects.devBlock.blocks;
 import ch.dams333.devlopement.Devlopement;
 import ch.dams333.devlopement.objects.devBlock.blocks.clear_blocks.ClearEffectsBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.clear_blocks.ClearItemsBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.condition_blocks.PlayerConditionBlockBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.give_blocks.GiveEffectsBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.give_blocks.GiveItemsBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.ActionbarMessageBlock;
@@ -12,6 +13,7 @@ import ch.dams333.devlopement.objects.devBlock.blocks.message_blocks.TitleMessag
 import ch.dams333.devlopement.objects.devBlock.blocks.player_blocks.GameModeBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.player_blocks.PvpBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.DevStartBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.ElseStartBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.EventStartBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.tp_blocks.LastLocationTeleportationBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.tp_blocks.LocationTeleportationBlock;
@@ -120,6 +122,16 @@ public class BlocksDeserializer {
         if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "player" + File.separator + "pvp").listFiles() != null) {
             for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "player" + File.separator + "pvp").listFiles())) {
                 main.addDevBlock(new PvpBlock(file, main));
+            }
+        }
+        if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "start" + File.separator + "else_start").listFiles() != null) {
+            for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "start" + File.separator + "else_start").listFiles())) {
+                main.addDevBlock(new ElseStartBlock(file, main));
+            }
+        }
+        if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "condition" + File.separator + "player_condition").listFiles() != null) {
+            for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "condition" + File.separator + "player_condition").listFiles())) {
+                main.addDevBlock(new PlayerConditionBlockBlock(file, main));
             }
         }
     }
