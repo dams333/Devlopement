@@ -12,6 +12,7 @@ import ch.dams333.devlopement.objects.devBlock.blocks.BlocksDeserializer;
 import ch.dams333.devlopement.objects.devBlock.link.LinksManager;
 import ch.dams333.devlopement.objects.locations.LocationsManager;
 import ch.dams333.devlopement.objects.messages.MessagesManager;
+import ch.dams333.devlopement.objects.variables.VariablesManager;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -37,6 +38,7 @@ public class Devlopement extends JavaPlugin {
     public MessagesManager messagesManager;
     public LocationsManager locationsManager;
     public LinksManager linksManager;
+    public VariablesManager variablesManager;
 
     private boolean pvp;
 
@@ -60,6 +62,7 @@ public class Devlopement extends JavaPlugin {
         this.messagesManager = new MessagesManager(this);
         this.locationsManager = new LocationsManager(this);
         this.linksManager = new LinksManager(this);
+        this.variablesManager = new VariablesManager(this);
 
         devmod = new ArrayList<>();
         devBlocks = new ArrayList<>();
@@ -71,6 +74,7 @@ public class Devlopement extends JavaPlugin {
         getCommand("message").setExecutor(new MessageCommand(this));
         getCommand("location").setExecutor(new LocationCommand(this));
         getCommand("link").setExecutor(new LinkCommand(this));
+        getCommand("variable").setExecutor(new VariableCommand(this));
 
         getServer().getPluginManager().registerEvents(new PlaceDevBlock(this), this);
         getServer().getPluginManager().registerEvents(new ClickInInventory(this), this);
@@ -83,6 +87,7 @@ public class Devlopement extends JavaPlugin {
         messagesManager.deserialize();
         locationsManager.deserialize();
         linksManager.deserialize();
+        variablesManager.deserialize();
 
         this.pvp = true;
         if(getConfig().isConfigurationSection("Global variables")){
@@ -103,6 +108,7 @@ public class Devlopement extends JavaPlugin {
         messagesManager.serialize();
         locationsManager.serialize();
         linksManager.serialize();
+        variablesManager.serialize();
 
         for(String key : getConfig().getKeys(false)){
             getConfig().set(key, null);

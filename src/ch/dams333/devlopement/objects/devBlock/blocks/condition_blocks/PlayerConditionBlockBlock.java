@@ -4,10 +4,7 @@ import ch.dams333.devlopement.Devlopement;
 import ch.dams333.devlopement.objects.devBlock.DevBlock;
 import ch.dams333.devlopement.objects.devBlock.blockType.BlockType;
 import ch.dams333.devlopement.objects.executor.CodeExecutor;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -83,7 +80,12 @@ public class PlayerConditionBlockBlock extends DevBlock{
 
     @Override
     public void execute(CodeExecutor codeExecutor) {
-        int size = Bukkit.getOnlinePlayers().size();
+        int size = 0;
+        for(Player p : Bukkit.getOnlinePlayers()){
+            if(p.getGameMode() != GameMode.SPECTATOR){
+                size+=1;
+            }
+        }
         if(effect == 1){
             if(size < number){
                 codeExecutor.moveHead();

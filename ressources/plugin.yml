@@ -19,3 +19,6 @@ commands:
   link:
     description: Permet de lier une condition a un si non
     permission: devlopement.commands.admin.link
+  variable:
+    description: Permet de gerer les variables
+    permission: devlopement.commands.admin.variable
