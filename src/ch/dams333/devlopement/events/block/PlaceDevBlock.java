@@ -19,6 +19,8 @@ import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.EventStartBlo
 import ch.dams333.devlopement.objects.devBlock.blocks.tp_blocks.LastLocationTeleportationBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.tp_blocks.LocationTeleportationBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.tp_blocks.LocationsListTeleportationBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.variable_blocks.BooleanModifyBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.variable_blocks.IntegerModifyBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.wait_blocks.FiveSecondBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.wait_blocks.OneSecondBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.wait_blocks.TenSecondBlock;
@@ -100,6 +102,12 @@ public class PlaceDevBlock implements Listener {
                     }
                     if(blockType.toString().equalsIgnoreCase(BlockType.PLAYER_CONDITION.toString())){
                         main.addDevBlock(new PlayerConditionBlockBlock(main, e.getBlock().getLocation()));
+                    }
+                    if(blockType.toString().equalsIgnoreCase(BlockType.INTEGER_MODIFY_VARIABLE.toString())){
+                        main.addDevBlock(new IntegerModifyBlock(main, e.getBlock().getLocation()));
+                    }
+                    if(blockType.toString().equalsIgnoreCase(BlockType.BOOLEAN_MODIFY_VARIABLE.toString())){
+                        main.addDevBlock(new BooleanModifyBlock(main, e.getBlock().getLocation()));
                     }
                 }
             }

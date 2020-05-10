@@ -14,10 +14,16 @@ public enum BlockType {
 
     PLAYER_CONDITION("player_condition", ChatColor.GOLD + "Teste le nombre de joueurs en ligne", Arrays.asList(ChatColor.GRAY +"Teste si le nombre de joueurs est", ChatColor.GRAY + "égale, inférieur ou supérieur à un nombre", ChatColor.GRAY + "Ne comptabilise pas les joueurs en spectateur"), Material.HOPPER, (byte)0),
 
+    BOOLEAN_MODIFY_VARIABLE("boolean_modify_variable", ChatColor.GOLD + "Modifier une variable boolean", Arrays.asList(ChatColor.GRAY +"Permet de modifier une variable boolean en", ChatColor.GRAY + "la passant sur false, true ou en la swichant"), Material.EMERALD_BLOCK, (byte)0),
+    INTEGER_MODIFY_VARIABLE("intger_modify_variable", ChatColor.GOLD + "Modifier une variable integer", Arrays.asList(ChatColor.GRAY +"Permet de modifier une variable integer selon un nombre en", ChatColor.GRAY + "le soustrayant, l'additionnant ou le définissant comme valeur"), Material.IRON_BLOCK, (byte)0),
+
+    BOOLEAN_TEST_VARIABLE("boolean_test_variable", ChatColor.GOLD + "Teste une variable boolean", Arrays.asList(ChatColor.GRAY +"Permet de tester l'ètât d'une variable boolean"), Material.LIME_STAINED_GLASS, (byte)0),
+    INTEGER_TEST_VARIABLE("integer_test_variable", ChatColor.GOLD + "Teste une variable integer", Arrays.asList(ChatColor.GRAY +"Permet de comparer l'ètât d'une variable integer à un nombre"), Material.WHITE_STAINED_GLASS, (byte)0),
+
     GIVE_ITEMS("give_items", ChatColor.GOLD + "Donner des items au joueur", Arrays.asList(ChatColor.GRAY +"Donne au joueur les items présents dans le coffre", ChatColor.GRAY + "SHIFT + clique droit pour choisir à qui donner"), Material.CHEST, (byte)0),
     GIVE_EFFECTS("give_effects", ChatColor.GOLD + "Donner des effets au joueur", Arrays.asList(ChatColor.GRAY +"Donne au joueur les effets des potions présentes dans l'alambic", ChatColor.GRAY + "SHIFT + clique droit pour choisir à qui donner"), Material.BREWING_STAND, (byte)0),
 
-    CLEAR_ITEMS("clear_items", ChatColor.GOLD + "Clear les objets", Arrays.asList(ChatColor.GRAY +"Vide entièrement l'inventaire du joueur", ChatColor.GRAY + "Clique droit pour choisir qui vider"), Material.WHITE_STAINED_GLASS, (byte)0),
+    CLEAR_ITEMS("clear_items", ChatColor.GOLD + "Clear les objets", Arrays.asList(ChatColor.GRAY +"Vide entièrement l'inventaire du joueur", ChatColor.GRAY + "Clique droit pour choisir qui vider"), Material.BLACK_STAINED_GLASS, (byte)0),
     CLEAR_EFFECTS("clear_effects", ChatColor.GOLD + "Clear les effets", Arrays.asList(ChatColor.GRAY +"Stope tous les effets en cours du joueur", ChatColor.GRAY + "Clique droit pour choisir qui stoper"), Material.YELLOW_STAINED_GLASS, (byte)0),
 
     GAMEMODE("gamemode", ChatColor.GOLD + "Change le GameMode", Arrays.asList(ChatColor.GRAY +"Définit le mode de jeu du joueur", ChatColor.GRAY + "Clique droit pour choisir qui changer"), Material.REDSTONE_BLOCK, (byte)0),

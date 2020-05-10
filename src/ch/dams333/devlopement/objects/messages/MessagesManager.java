@@ -1,6 +1,8 @@
 package ch.dams333.devlopement.objects.messages;
 
 import ch.dams333.devlopement.Devlopement;
+import ch.dams333.devlopement.objects.variables.BooleanVariable;
+import ch.dams333.devlopement.objects.variables.IntegerVariable;
 import net.minecraft.server.v1_15_R1.NBTTagCompound;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -72,7 +74,40 @@ public class MessagesManager {
     public String getMessage(UUID uuid, Player linePlayer){
         for(Message message : this.messages){
             if(message.getUuid().equals(uuid)){
-                return message.getMessage().replaceAll("&", "§").replaceAll("%%PLAYER%%", linePlayer.getName());
+                String msg = message.getMessage().replaceAll("&", "§").replaceAll("%%PLAYER%%", linePlayer.getName());
+
+                StringBuilder sb = new StringBuilder();
+
+                for(String arg : msg.split(" ")){
+                    String toAdd = arg;
+                    if(arg.startsWith("%%") && arg.endsWith("%%")){
+                        toAdd = arg.replaceAll("%%", "");
+                        String[] arg2 = toAdd.split(":");
+                        if(arg2[0].equalsIgnoreCase("var")){
+                            String varName = arg2[1];
+                            if(main.variablesManager.isVariableABooleanByNameAndPlayer(varName, message.getPlayer())){
+                                BooleanVariable var = main.variablesManager.getBooleanByNameAndPlayer(varName, message.getPlayer());
+                                if(var.isGlobal()){
+                                    toAdd = String.valueOf(var.getGloabalValue());
+                                }else{
+                                    toAdd = String.valueOf(var.getPlayerValue(linePlayer));
+                                }
+                            }
+                            if(main.variablesManager.isVariableAIntegerByNameAndPlayer(varName, message.getPlayer())){
+                                IntegerVariable var = main.variablesManager.getIntegerByNameAndPlayer(varName, message.getPlayer());
+                                if(var.isGlobal()){
+                                    toAdd = String.valueOf(var.getGloabalValue());
+                                }else{
+                                    toAdd = String.valueOf(var.getPlayerValue(linePlayer));
+                                }
+                            }
+                        }
+                    }
+
+                    sb.append(toAdd + " ");
+                }
+
+                return sb.toString();
             }
         }
         return "";

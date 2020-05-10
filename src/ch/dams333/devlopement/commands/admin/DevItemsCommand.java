@@ -61,6 +61,11 @@ public class DevItemsCommand implements CommandExecutor {
                 setItem(inv, 46, BlockType.PVP);
 
                 setItem(inv, 5, BlockType.PLAYER_CONDITION);
+                setItem(inv, 6, BlockType.BOOLEAN_TEST_VARIABLE);
+                setItem(inv, 7, BlockType.INTEGER_TEST_VARIABLE);
+
+                setItem(inv, 14, BlockType.BOOLEAN_MODIFY_VARIABLE);
+                setItem(inv, 15, BlockType.INTEGER_MODIFY_VARIABLE);
 
                 p.openInventory(inv);
                 return true;

@@ -1,9 +1,19 @@
 package ch.dams333.devlopement.objects.variables;
 
 import ch.dams333.devlopement.Devlopement;
+import net.minecraft.server.v1_15_R1.NBTTagCompound;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.craftbukkit.v1_15_R1.inventory.CraftItemStack;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.io.File;
 import java.io.IOException;
@@ -161,5 +171,272 @@ public class VariablesManager {
             }
         }
         return vars;
+    }
+
+
+
+    public void loadBooleansInventroy(Player p, int page, UUID selected){
+
+        Inventory inv = Bukkit.createInventory(null, 54, ChatColor.GOLD + "Choix de la variable > Page " + page);
+
+        inv.setItem(45, main.API.itemStackManager.create(Material.ARROW, ChatColor.GRAY + "Page précédente"));
+        inv.setItem(53, main.API.itemStackManager.create(Material.ARROW, ChatColor.GRAY + "Page suivante"));
+
+
+        int messagePerPage = 5 * 9;
+
+        int start = (page - 1) * messagePerPage;
+
+
+        for(int i = 0; i < messagePerPage; i++){
+
+            if((getPlayerBooleans(p).size() - 1) >= start){
+                BooleanVariable var = getPlayerBooleans(p).get(start);
+                ItemStack it = main.API.itemStackManager.create(Material.PAPER, ChatColor.GOLD + var.getName());
+                if(selected != null && var.getUuid().equals(selected)){
+                    it.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
+                    ItemMeta itM = it.getItemMeta();
+                    itM.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                    itM.setLore(Arrays.asList(ChatColor.GREEN + "Sélectionné"));
+                    it.setItemMeta(itM);
+                }
+
+                net.minecraft.server.v1_15_R1.ItemStack stack = CraftItemStack.asNMSCopy(it);
+                NBTTagCompound tag = stack.getTag() != null ? stack.getTag() : new NBTTagCompound();
+                tag.setString("uuid", var.getUuid().toString());
+                stack.setTag(tag);
+                it = CraftItemStack.asCraftMirror(stack);
+
+                inv.setItem(i, it);
+            }else{
+                break;
+            }
+            start++;
+        }
+        p.openInventory(inv);
+    }
+
+    public void loadIntegersInventory(Player p, int page, UUID selected){
+
+        Inventory inv = Bukkit.createInventory(null, 54, ChatColor.GOLD + "Choix de la variable > Page " + page);
+
+        inv.setItem(45, main.API.itemStackManager.create(Material.ARROW, ChatColor.GRAY + "Page précédente"));
+        inv.setItem(53, main.API.itemStackManager.create(Material.ARROW, ChatColor.GRAY + "Page suivante"));
+
+
+        int messagePerPage = 5 * 9;
+
+        int start = (page - 1) * messagePerPage;
+
+
+        for(int i = 0; i < messagePerPage; i++){
+
+            if((getPlayerIntegers(p).size() - 1) >= start){
+                IntegerVariable var = getPlayerIntegers(p).get(start);
+                ItemStack it = main.API.itemStackManager.create(Material.PAPER, ChatColor.GOLD + var.getName());
+                if(selected != null && var.getUuid().equals(selected)){
+                    it.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
+                    ItemMeta itM = it.getItemMeta();
+                    itM.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                    itM.setLore(Arrays.asList(ChatColor.GREEN + "Sélectionné"));
+                    it.setItemMeta(itM);
+                }
+
+                net.minecraft.server.v1_15_R1.ItemStack stack = CraftItemStack.asNMSCopy(it);
+                NBTTagCompound tag = stack.getTag() != null ? stack.getTag() : new NBTTagCompound();
+                tag.setString("uuid", var.getUuid().toString());
+                stack.setTag(tag);
+                it = CraftItemStack.asCraftMirror(stack);
+
+                inv.setItem(i, it);
+            }else{
+                break;
+            }
+            start++;
+        }
+        p.openInventory(inv);
+    }
+
+    public boolean isGlobal(UUID var) {
+        for(BooleanVariable booleanVariable : this.booleanVariables){
+            if(var.equals(booleanVariable.getUuid())){
+                return booleanVariable.isGlobal();
+            }
+        }
+        for(IntegerVariable integerVariable : this.integerVariables){
+            if(var.equals(integerVariable.getUuid())){
+                return integerVariable.isGlobal();
+            }
+        }
+        return false;
+    }
+
+    public void setBooleanTrue(UUID varID, boolean all, Player linePlayer) {
+        BooleanVariable var = getBooleanVariableByUUID(varID);
+        int index = this.booleanVariables.indexOf(var);
+
+        if(var.isGlobal()){
+            var.setGloabalValue(true);
+        }else{
+            if(all){
+                for(Player p : Bukkit.getOnlinePlayers()){
+                    var.setPlayerValue(p, true);
+                }
+            }else{
+                var.setPlayerValue(linePlayer, true);
+            }
+        }
+
+        this.booleanVariables.set(index, var);
+    }
+
+    public void switchBoolean(UUID varID, boolean all, Player linePlayer) {
+        BooleanVariable var = getBooleanVariableByUUID(varID);
+        int index = this.booleanVariables.indexOf(var);
+
+        if(var.isGlobal()){
+            var.setGloabalValue(!var.getGloabalValue());
+        }else{
+            if(all){
+                for(Player p : Bukkit.getOnlinePlayers()){
+                    var.setPlayerValue(p, !var.getPlayerValue(p));
+                }
+            }else{
+                var.setPlayerValue(linePlayer, !var.getPlayerValue(linePlayer));
+            }
+        }
+
+        this.booleanVariables.set(index, var);
+    }
+
+    public void setBooleanFalse(UUID varID, boolean all, Player linePlayer) {
+        BooleanVariable var = getBooleanVariableByUUID(varID);
+        int index = this.booleanVariables.indexOf(var);
+
+        if(var.isGlobal()){
+            var.setGloabalValue(false);
+        }else{
+            if(all){
+                for(Player p : Bukkit.getOnlinePlayers()){
+                    var.setPlayerValue(p, false);
+                }
+            }else{
+                var.setPlayerValue(linePlayer, false);
+            }
+        }
+
+        this.booleanVariables.set(index, var);
+    }
+
+    public void addInteger(UUID varID, int modifyer, boolean all, Player linePlayer) {
+        IntegerVariable var = getIntegerVariableByUUID(varID);
+        int index = this.integerVariables.indexOf(var);
+
+        if(var.isGlobal()){
+            var.setGloabalValue(var.getGloabalValue() + modifyer);
+        }else{
+            if(all) {
+                for (Player p : Bukkit.getOnlinePlayers()) {
+                    var.setPlayerValue(p, var.getPlayerValue(p) + modifyer);
+                }
+            }else{
+                var.setPlayerValue(linePlayer, var.getPlayerValue(linePlayer) + modifyer);
+            }
+        }
+
+        this.integerVariables.set(index, var);
+    }
+
+    public void setInteger(UUID varID, int modifyer, boolean all, Player linePlayer) {
+        IntegerVariable var = getIntegerVariableByUUID(varID);
+        int index = this.integerVariables.indexOf(var);
+
+        if(var.isGlobal()){
+            var.setGloabalValue(modifyer);
+        }else{
+            if(all) {
+                for (Player p : Bukkit.getOnlinePlayers()) {
+                    var.setPlayerValue(p, modifyer);
+                }
+            }else{
+                var.setPlayerValue(linePlayer, modifyer);
+            }
+        }
+
+        this.integerVariables.set(index, var);
+    }
+
+    public void removeInteger(UUID varID, int modifyer, boolean all, Player linePlayer) {
+        IntegerVariable var = getIntegerVariableByUUID(varID);
+        int index = this.integerVariables.indexOf(var);
+
+        if(var.isGlobal()){
+            var.setGloabalValue(var.getGloabalValue() - modifyer);
+        }else{
+            if(all) {
+                for (Player p : Bukkit.getOnlinePlayers()) {
+                    var.setPlayerValue(p, var.getPlayerValue(p) - modifyer);
+                }
+            }else{
+                var.setPlayerValue(linePlayer, var.getPlayerValue(linePlayer) - modifyer);
+            }
+        }
+
+        this.integerVariables.set(index, var);
+    }
+
+    private IntegerVariable getIntegerVariableByUUID(UUID varID) {
+        for(IntegerVariable integerVariable : this.integerVariables){
+            if(integerVariable.getUuid().equals(varID)){
+                return integerVariable;
+            }
+        }
+        return null;
+    }
+
+
+    private BooleanVariable getBooleanVariableByUUID(UUID varID) {
+        for(BooleanVariable booleanVariable : this.booleanVariables){
+            if(booleanVariable.getUuid().equals(varID)){
+                return booleanVariable;
+            }
+        }
+        return null;
+    }
+
+    public boolean isVariableABooleanByNameAndPlayer(String varName, UUID player) {
+        for(BooleanVariable var : this.booleanVariables){
+            if(var.getName().equalsIgnoreCase(varName) && var.getOwner().equals(player)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isVariableAIntegerByNameAndPlayer(String varName, UUID player) {
+        for(IntegerVariable var : this.integerVariables){
+            if(var.getName().equalsIgnoreCase(varName) && var.getOwner().equals(player)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public BooleanVariable getBooleanByNameAndPlayer(String varName, UUID player) {
+        for(BooleanVariable var : this.booleanVariables){
+            if(var.getName().equalsIgnoreCase(varName) && var.getOwner().equals(player)){
+                return var;
+            }
+        }
+        return null;
+    }
+
+    public IntegerVariable getIntegerByNameAndPlayer(String varName, UUID player) {
+        for(IntegerVariable var : this.integerVariables){
+            if(var.getName().equalsIgnoreCase(varName) && var.getOwner().equals(player)){
+                return var;
+            }
+        }
+        return null;
     }
 }

@@ -18,6 +18,8 @@ import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.EventStartBlo
 import ch.dams333.devlopement.objects.devBlock.blocks.tp_blocks.LastLocationTeleportationBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.tp_blocks.LocationTeleportationBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.tp_blocks.LocationsListTeleportationBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.variable_blocks.BooleanModifyBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.variable_blocks.IntegerModifyBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.wait_blocks.FiveSecondBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.wait_blocks.OneSecondBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.wait_blocks.TenSecondBlock;
@@ -132,6 +134,16 @@ public class BlocksDeserializer {
         if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "condition" + File.separator + "player_condition").listFiles() != null) {
             for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "condition" + File.separator + "player_condition").listFiles())) {
                 main.addDevBlock(new PlayerConditionBlockBlock(file, main));
+            }
+        }
+        if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "variables" + File.separator + "integer_modify").listFiles() != null) {
+            for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "variables" + File.separator + "integer_modify").listFiles())) {
+                main.addDevBlock(new IntegerModifyBlock(file, main));
+            }
+        }
+        if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "variables" + File.separator + "boolean_modify").listFiles() != null) {
+            for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "variables" + File.separator + "boolean_modify").listFiles())) {
+                main.addDevBlock(new BooleanModifyBlock(file, main));
             }
         }
     }
