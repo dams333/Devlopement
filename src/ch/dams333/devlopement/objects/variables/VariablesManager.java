@@ -439,4 +439,91 @@ public class VariablesManager {
         }
         return null;
     }
+
+    public boolean isBooleanRespondToAction(UUID var, boolean all, int action, Player linePlayer) {
+        BooleanVariable bool = null;
+        for(BooleanVariable test : this.booleanVariables){
+            if(test.getUuid().equals(var)) bool = test;
+        }
+        for(Player p : Bukkit.getOnlinePlayers()){
+            bool.getPlayerValue(p);
+        }
+        if(bool.isGlobal()){
+            if(action == 1){
+                if(bool.getGloabalValue()){
+                    return true;
+                }
+            }
+            if(action == 2){
+                if(!bool.getGloabalValue()){
+                    return true;
+                }
+            }
+        }else{
+            if(all){
+                Boolean result = true;
+                for(UUID player : bool.getValues().keySet()){
+                    if(action == 1){
+                        if(!bool.getValues().get(player)){
+                            result = false;
+                        }
+                    }
+                    if(action == 2){
+                        if(bool.getValues().get(player)){
+                            result = false;
+                        }
+                    }
+                }
+                return result;
+            }else{
+                if(action == 1){
+                    if(bool.getPlayerValue(linePlayer)){
+                        return true;
+                    }
+                }
+                if(action == 2){
+                    if(!bool.getPlayerValue(linePlayer)){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean isIntegerRespondToAction(UUID var, boolean all, int action, int tester, Player linePlayer) {
+        IntegerVariable integer = null;
+        for(IntegerVariable test : this.integerVariables){
+            if(test.getUuid().equals(var)) integer = test;
+        }
+        for(Player p : Bukkit.getOnlinePlayers()){
+            integer.getPlayerValue(p);
+        }
+        if(integer.isGlobal()){
+            if(action == 1) return integer.getGloabalValue() < tester;
+            if(action == 2) return integer.getGloabalValue() <= tester;
+            if(action == 3) return integer.getGloabalValue() == tester;
+            if(action == 4) return integer.getGloabalValue() >= tester;
+            if(action == 5) return integer.getGloabalValue() > tester;
+        }else{
+            if(all){
+                boolean result = true;
+                for(UUID player : integer.getValues().keySet()){
+                    if(action == 1 && integer.getValues().get(player) >= tester) result = false;
+                    if(action == 2 && integer.getValues().get(player) > tester) result = false;
+                    if(action == 3 && integer.getValues().get(player) != tester) result = false;
+                    if(action == 4 && integer.getValues().get(player) < tester) result = false;
+                    if(action == 5 && integer.getValues().get(player) <= tester) result = false;
+                }
+                return result;
+            }else{
+                if(action == 1) return integer.getPlayerValue(linePlayer) < tester;
+                if(action == 2) return integer.getPlayerValue(linePlayer) <= tester;
+                if(action == 3) return integer.getPlayerValue(linePlayer) == tester;
+                if(action == 4) return integer.getPlayerValue(linePlayer) >= tester;
+                if(action == 5) return integer.getPlayerValue(linePlayer) > tester;
+            }
+        }
+        return false;
+    }
 }

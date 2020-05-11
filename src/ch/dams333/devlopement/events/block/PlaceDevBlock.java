@@ -4,6 +4,8 @@ import ch.dams333.devlopement.Devlopement;
 import ch.dams333.devlopement.objects.devBlock.blockType.BlockType;
 import ch.dams333.devlopement.objects.devBlock.blocks.clear_blocks.ClearEffectsBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.clear_blocks.ClearItemsBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.condition_blocks.BooleanConditionBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.condition_blocks.IntegerConditionBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.condition_blocks.PlayerConditionBlockBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.give_blocks.GiveEffectsBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.give_blocks.GiveItemsBlock;
@@ -108,6 +110,12 @@ public class PlaceDevBlock implements Listener {
                     }
                     if(blockType.toString().equalsIgnoreCase(BlockType.BOOLEAN_MODIFY_VARIABLE.toString())){
                         main.addDevBlock(new BooleanModifyBlock(main, e.getBlock().getLocation()));
+                    }
+                    if(blockType.toString().equalsIgnoreCase(BlockType.BOOLEAN_TEST_VARIABLE.toString())){
+                        main.addDevBlock(new BooleanConditionBlock(main, e.getBlock().getLocation()));
+                    }
+                    if(blockType.toString().equalsIgnoreCase(BlockType.INTEGER_TEST_VARIABLE.toString())){
+                        main.addDevBlock(new IntegerConditionBlock(main, e.getBlock().getLocation()));
                     }
                 }
             }

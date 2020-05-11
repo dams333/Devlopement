@@ -3,6 +3,8 @@ package ch.dams333.devlopement.objects.devBlock.blocks;
 import ch.dams333.devlopement.Devlopement;
 import ch.dams333.devlopement.objects.devBlock.blocks.clear_blocks.ClearEffectsBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.clear_blocks.ClearItemsBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.condition_blocks.BooleanConditionBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.condition_blocks.IntegerConditionBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.condition_blocks.PlayerConditionBlockBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.give_blocks.GiveEffectsBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.give_blocks.GiveItemsBlock;
@@ -144,6 +146,16 @@ public class BlocksDeserializer {
         if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "variables" + File.separator + "boolean_modify").listFiles() != null) {
             for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "variables" + File.separator + "boolean_modify").listFiles())) {
                 main.addDevBlock(new BooleanModifyBlock(file, main));
+            }
+        }
+        if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "condition" + File.separator + "integer_test").listFiles() != null) {
+            for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "condition" + File.separator + "integer_test").listFiles())) {
+                main.addDevBlock(new IntegerConditionBlock(file, main));
+            }
+        }
+        if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "condition" + File.separator + "boolean_test").listFiles() != null) {
+            for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "condition" + File.separator + "boolean_test").listFiles())) {
+                main.addDevBlock(new BooleanConditionBlock(file, main));
             }
         }
     }
