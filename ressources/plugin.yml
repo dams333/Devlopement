@@ -22,3 +22,6 @@ commands:
   variable:
     description: Permet de gerer les variables
     permission: devlopement.commands.admin.variable
+  timer:
+    description: Permet de gerer les timers
+    permission: devlopement.commands.admin.timer

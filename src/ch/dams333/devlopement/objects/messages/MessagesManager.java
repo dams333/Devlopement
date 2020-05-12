@@ -102,6 +102,13 @@ public class MessagesManager {
                                 }
                             }
                         }
+                        if(arg2[0].equalsIgnoreCase("timer")){
+                            String timerName = arg2[1];
+                            String timerFormat = arg2[2];
+                            if(main.gameTimerManager.playerHasTimer(message.getPlayer(), timerName)){
+                                toAdd = main.gameTimerManager.getPlayerTimerByPlayerAndName(message.getPlayer(), timerName).toText(timerFormat);
+                            }
+                        }
                     }
 
                     sb.append(toAdd + " ");

@@ -12,6 +12,7 @@ import ch.dams333.devlopement.objects.devBlock.blocks.BlocksDeserializer;
 import ch.dams333.devlopement.objects.devBlock.link.LinksManager;
 import ch.dams333.devlopement.objects.locations.LocationsManager;
 import ch.dams333.devlopement.objects.messages.MessagesManager;
+import ch.dams333.devlopement.objects.timer.GameTimerManager;
 import ch.dams333.devlopement.objects.variables.VariablesManager;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -39,6 +40,7 @@ public class Devlopement extends JavaPlugin {
     public LocationsManager locationsManager;
     public LinksManager linksManager;
     public VariablesManager variablesManager;
+    public GameTimerManager gameTimerManager;
 
     private boolean pvp;
 
@@ -63,6 +65,7 @@ public class Devlopement extends JavaPlugin {
         this.locationsManager = new LocationsManager(this);
         this.linksManager = new LinksManager(this);
         this.variablesManager = new VariablesManager(this);
+        this.gameTimerManager = new GameTimerManager(this);
 
         devmod = new ArrayList<>();
         devBlocks = new ArrayList<>();
@@ -75,6 +78,7 @@ public class Devlopement extends JavaPlugin {
         getCommand("location").setExecutor(new LocationCommand(this));
         getCommand("link").setExecutor(new LinkCommand(this));
         getCommand("variable").setExecutor(new VariableCommand(this));
+        getCommand("timer").setExecutor(new TimerCommand(this));
 
         getServer().getPluginManager().registerEvents(new PlaceDevBlock(this), this);
         getServer().getPluginManager().registerEvents(new ClickInInventory(this), this);
@@ -88,6 +92,7 @@ public class Devlopement extends JavaPlugin {
         locationsManager.deserialize();
         linksManager.deserialize();
         variablesManager.deserialize();
+        gameTimerManager.deserialize();
 
         this.pvp = true;
         if(getConfig().isConfigurationSection("Global variables")){
@@ -109,6 +114,7 @@ public class Devlopement extends JavaPlugin {
         locationsManager.serialize();
         linksManager.serialize();
         variablesManager.serialize();
+        gameTimerManager.serialize();
 
         for(String key : getConfig().getKeys(false)){
             getConfig().set(key, null);
