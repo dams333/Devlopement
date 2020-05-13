@@ -17,6 +17,9 @@ import ch.dams333.devlopement.objects.devBlock.blocks.player_blocks.PvpBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.DevStartBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.ElseStartBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.EventStartBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.timer_blocks.PauseTimerBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.timer_blocks.ResetTimerBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.timer_blocks.StartTimerBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.tp_blocks.LastLocationTeleportationBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.tp_blocks.LocationTeleportationBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.tp_blocks.LocationsListTeleportationBlock;
@@ -156,6 +159,21 @@ public class BlocksDeserializer {
         if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "condition" + File.separator + "boolean_test").listFiles() != null) {
             for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "condition" + File.separator + "boolean_test").listFiles())) {
                 main.addDevBlock(new BooleanConditionBlock(file, main));
+            }
+        }
+        if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "timer" + File.separator + "start_timer").listFiles() != null) {
+            for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "timer" + File.separator + "start_timer").listFiles())) {
+                main.addDevBlock(new StartTimerBlock(file, main));
+            }
+        }
+        if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "timer" + File.separator + "pause_timer").listFiles() != null) {
+            for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "timer" + File.separator + "pause_timer").listFiles())) {
+                main.addDevBlock(new PauseTimerBlock(file, main));
+            }
+        }
+        if(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "timer" + File.separator + "reset_timer").listFiles() != null) {
+            for (File file : Objects.requireNonNull(new File(main.getDataFolder() + File.separator + "blocks" + File.separator + "timer" + File.separator + "reset_timer").listFiles())) {
+                main.addDevBlock(new ResetTimerBlock(file, main));
             }
         }
     }

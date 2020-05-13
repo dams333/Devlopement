@@ -18,6 +18,9 @@ import ch.dams333.devlopement.objects.devBlock.blocks.player_blocks.PvpBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.DevStartBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.ElseStartBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.start_blocks.EventStartBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.timer_blocks.PauseTimerBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.timer_blocks.ResetTimerBlock;
+import ch.dams333.devlopement.objects.devBlock.blocks.timer_blocks.StartTimerBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.tp_blocks.LastLocationTeleportationBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.tp_blocks.LocationTeleportationBlock;
 import ch.dams333.devlopement.objects.devBlock.blocks.tp_blocks.LocationsListTeleportationBlock;
@@ -116,6 +119,15 @@ public class PlaceDevBlock implements Listener {
                     }
                     if(blockType.toString().equalsIgnoreCase(BlockType.INTEGER_TEST_VARIABLE.toString())){
                         main.addDevBlock(new IntegerConditionBlock(main, e.getBlock().getLocation()));
+                    }
+                    if(blockType.toString().equalsIgnoreCase(BlockType.START_TIMER.toString())){
+                        main.addDevBlock(new StartTimerBlock(main, e.getBlock().getLocation()));
+                    }
+                    if(blockType.toString().equalsIgnoreCase(BlockType.PAUSE_TIMER.toString())){
+                        main.addDevBlock(new PauseTimerBlock(main, e.getBlock().getLocation()));
+                    }
+                    if(blockType.toString().equalsIgnoreCase(BlockType.RESET_TIMER.toString())){
+                        main.addDevBlock(new ResetTimerBlock(main, e.getBlock().getLocation()));
                     }
                 }
             }

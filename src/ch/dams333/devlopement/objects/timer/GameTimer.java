@@ -50,7 +50,7 @@ public class GameTimer {
     public String toText(String format){
 
         String hourF = "h";
-        String minuteF = "h";
+        String minuteF = "m";
         String secondF = "s";
 
         if(format.contains(hourF)){
@@ -58,14 +58,14 @@ public class GameTimer {
             int hour = time / 60;
             int min = hour % 60;
             hour = hour/60;
-            return format.replaceFirst(hourF, String.valueOf(hour)).replaceFirst(minuteF, String.valueOf(min)).replaceFirst(secondF, String.valueOf(sec));
+            return format.replaceFirst(hourF, String.valueOf(add0IfNeed(hour))).replaceFirst(minuteF, String.valueOf(add0IfNeed(min))).replaceFirst(secondF, String.valueOf(add0IfNeed(sec)));
         }else if(format.contains(minuteF)){
             int min = (time % 3600) / 60;
             int sec = time % 60;
-            return format.replaceFirst(minuteF, String.valueOf(min)).replaceFirst(secondF, String.valueOf(sec));
+            return format.replaceFirst(minuteF, String.valueOf(add0IfNeed(min))).replaceFirst(secondF, String.valueOf(add0IfNeed(sec)));
         }else if(format.contains(secondF)){
             int sec = time;
-            return format.replaceFirst(secondF, String.valueOf(sec));
+            return format.replaceFirst(secondF, String.valueOf(add0IfNeed(sec)));
         }else{
             return format;
         }

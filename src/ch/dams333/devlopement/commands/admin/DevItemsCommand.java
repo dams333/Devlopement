@@ -67,6 +67,10 @@ public class DevItemsCommand implements CommandExecutor {
                 setItem(inv, 14, BlockType.BOOLEAN_MODIFY_VARIABLE);
                 setItem(inv, 15, BlockType.INTEGER_MODIFY_VARIABLE);
 
+                setItem(inv, 23, BlockType.START_TIMER);
+                setItem(inv, 24, BlockType.PAUSE_TIMER);
+                setItem(inv, 25, BlockType.RESET_TIMER);
+
                 p.openInventory(inv);
                 return true;
             }
